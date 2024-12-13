@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>AppleSpot - Mac</title>
+    <link rel="stylesheet" href="/group14/css/style.css">
+    <link rel="stylesheet" href="/group14/css/product-gallery.css">
+</head>
+<body>
+    <div id="header-component"></div>
+    <h1 class="page-title">מחשבי מק</h1>
+    <div class="product-grid" id="productGrid"></div>
+
+    <!-- Add these script tags before using loadComponent -->
+    <script src="/group14/js/components.js"></script>
+    <script src="/group14/js/main.js"></script>
+
+    <script type="module">
+        import { displayProducts } from '/group14/js/product-gallery.js';
+        document.addEventListener('DOMContentLoaded', async () => {
+           await loadComponent('header-component', '/group14/components/header.html');
+        });
+        displayProducts('mac');
+    </script>
+</body>
+</html>

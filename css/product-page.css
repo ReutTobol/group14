@@ -1,0 +1,111 @@
+/* Inherit styles from the product configuration CSS */
+
+body.product-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    min-height: 100vh;
+}
+
+.product-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    padding: 40px;
+}
+
+.product-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.product-image-container img {
+    max-width: 50%;
+    height: 50%;
+    position: relative;
+    margin-bottom: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.product-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-info-container h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.product-info-container p {
+    margin-bottom: 16px;
+}
+
+.product-specs-container {
+    margin-top: 24px;
+}
+
+.product-specs-container h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.product-specs-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.product-specs-container li {
+    margin-bottom: 8px;
+}
+
+.product-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-primary {
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0fbf35;
+    background-color: transparent;
+    border: 2px solid #0fbf35;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: rgba(0, 113, 227, 0.1);
+}
+
+.btn-secondary {
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0071e3;
+    background-color: transparent;
+    border: 2px solid #0071e3;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 113, 227, 0.1);
+}
