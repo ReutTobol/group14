@@ -5,7 +5,7 @@ async function loadComponent(elementId, componentPath, basePath = '') {
         let html = await response.text();
 
         // Replace base path placeholder
-        html = html.replace(/{{base}}/g, basePath);
+        html = html.replace(/{{group14}}/g, basePath);
 
         document.getElementById(elementId).innerHTML = html;
 

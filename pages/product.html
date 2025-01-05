@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>AppleSpot - Product Details</title>
+    <link rel="stylesheet" href="/group14/css/header.css">
+    <link rel="stylesheet" href="/group14/css/product-page.css">
+</head>
+<body class="product-page">
+    <div id="header-component"></div>
+
+    <div class="product-page-container">
+        <div class="product-image-container">
+            <img id="product-image" src="" alt="">
+        </div>
+
+        <div class="product-info-container">
+            <h1 id="product-name" class="product-title"></h1>
+            <p id="product-description" class="product-description"></p>
+            <p id="product-price" class="product-price"></p>
+
+            <div class="quantity-selector">
+                <button onclick="decrementQuantity()">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="99" onchange="validateQuantity(this)">
+                <button onclick="incrementQuantity()">+</button>
+            </div>
+
+            <div class="product-specs-container">
+                <h2>מפרט טכני</h2>
+                <ul id="product-specs"></ul>
+            </div>
+
+            <div class="product-actions">
+                <button onclick="addToCart()" class="btn-primary">הוסף לעגלה</button>
+                <button onclick="window.history.back()" class="btn-secondary">חזור לקניות</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/group14/js/components.js"></script>
+    <script src="/group14/js/main.js"></script>
+    <script type="module">
+        import { getProductDetails } from '/group14/js/product-gallery.js';
+        import { CartService } from '/group14/js/cart-service.js';
+
+        window.cartService = CartService;
+        let currentProduct = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadComponent('header-component', '/group14/components/header.html');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category') || 'mac';
+            const productId = urlParams.get('id');
+
+            if (productId) {
+                try {
+                    currentProduct = await getProductDetails(category, productId);
+                    if (currentProduct) {
+                        updateProductPage(currentProduct);
+                    } else {
+                        console.error('Product details not found.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching product:', error);
+                }
+            }
+        });
+
+        window.incrementQuantity = function() {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            if (currentValue < 99) {
+                input.value = currentValue + 1;
+            }
+        };
+
+        window.decrementQuantity = function() {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        };
+
+        window.validateQuantity = function(input) {
+            let value = parseInt(input.value);
+            if (isNaN(value) || value < 1) {
+                input.value = 1;
+            } else if (value > 99) {
+                input.value = 99;
+            }
+        };
+
+        window.addToCart = function() {
+        if (window.currentProduct) {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            window.cartService.addToCart({
+                ...window.currentProduct,
+                quantity: quantity,
+                category: new URLSearchParams(window.location.search).get('category')
+            });
+
+            // Visual feedback
+            const button = document.querySelector('.btn-primary');
+            button.classList.add('added');
+            button.textContent = 'נוסף לעגלה!'
+
+            // Reset button after animation
+            setTimeout(() => {
+                button.classList.remove('added');
+                button.textContent = 'הוסף לעגלה'
+            }, 2000);
+        } else {
+            console.error('No product data available');
+        }
+    };
+
+        function updateProductPage(product) {
+            document.getElementById('product-image').src = product.image;
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-description').textContent = product.fullDescription || product.description;
+            document.getElementById('product-price').textContent = product.price;
+
+            const specsList = document.getElementById('product-specs');
+            specsList.innerHTML = '';
+            if (product.specs) {
+                product.specs.forEach(spec => {
+                    const li = document.createElement('li');
+                    li.textContent = spec;
+                    specsList.appendChild(li);
+                });
+            }
+
+            // Store current product data globally
+            window.currentProduct = product;
+        }
+    </script>
+</body>
+</html>
