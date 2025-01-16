@@ -152,7 +152,6 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
@@ -170,7 +169,6 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
@@ -213,17 +211,17 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
+    opacity: 20;
     transition: all 0.3s ease;
 }
 
 .btn-primary.added .button-text {
-    opacity: 0;
+    opacity: 100;
     transform: translateY(20px);
 }
 
 .btn-primary.added .success-icon {
-    opacity: 1;
+    opacity: 100;
     transform: translate(-50%, -50%) scale(1);
 }
 

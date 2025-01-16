@@ -1,11 +1,49 @@
-// Product data organized by category
-const productData = {
+const defaultColors = {
+    mac: [
+        { name: 'Space Gray', value: '#666666', sku:'sg' },
+        { name: 'Silver', value: '#E3E3E3', sku:'sv' }
+    ],
+    iphone: [
+        { name: 'Desert Titanium', value: '#FFD700', sku:'dt' },
+        { name: 'Blue Titanium', value: '#6B7989', sku:'bt' },
+        { name: 'White Titanium', value: '#F5F5F0', sku: 'wt' },
+        { name: 'Black Titanium', value: '#4A4846', sku: 'bt' }
+    ],
+    ipad: [
+        { name: 'Space Gray', value: '#666666', sku:'sg' },
+        { name: 'Silver', value: '#E3E3E3', sku:'sv' },
+        { name: 'Rose Gold', value: '#FAE0D8', sku:'rg' }
+    ]
+};
+
+const defaultStorage = {
+    mac: [
+        { size: '256GB', priceAdd: 0 },
+        { size: '512GB', priceAdd: 800 },
+        { size: '1TB', priceAdd: 1600 },
+        { size: '2TB', priceAdd: 3200 }
+    ],
+    iphone: [
+        { size: '128GB', priceAdd: 0 },
+        { size: '256GB', priceAdd: 500 },
+        { size: '512GB', priceAdd: 1000 },
+        { size: '1TB', priceAdd: 1500 }
+    ],
+    ipad: [
+        { size: '64GB', priceAdd: 0 },
+        { size: '256GB', priceAdd: 800 },
+        { size: '512GB', priceAdd: 1600 },
+        { size: '1TB', priceAdd: 2400 }
+    ]
+};
+
+export const productData = {
     mac: [
         {
             id: 1,
             name: "MacBook Pro 14″",
             description: "M3 Pro, 18GB RAM, 512GB SSD",
-            price: "₪7,999",
+            basePrice: "7,999",
             image: "/group14/img/macbook.webp",
             fullDescription: `
                 MacBook Pro 14" עם שבב M3 Pro מציע ביצועים מרשימים במיוחד לאנשי מקצוע ומשתמשים מתקדמים. המחשב מצויד במסך Liquid Retina XDR מתקדם המספק איכות תצוגה מדהימה עם צבעים מדויקים ורמת בהירות גבוהה. הוא מושלם למעצבים, עורכי וידאו ומפתחים הזקוקים לביצועים גבוהים ודיוק צבעים. המחשב כולל סוללה חזקה המספקת עד 22 שעות עבודה, מערכת שמע מתקדמת וחיבורים מגוונים לכל צורך מקצועי.
@@ -23,7 +61,7 @@ const productData = {
             id: 2,
             name: "MacBook Pro 16″",
             description: "M3 MAX, 128GB RAM, 8TB SSD",
-            price: "₪9,999",
+            basePrice: "9,999",
             image: "/group14/img/macbook.webp",
             fullDescription: `
                 MacBook Pro 16" הוא המחשב הנייד החזק ביותר של אפל, המיועד לאנשי מקצוע הזקוקים לעוצמה מקסימלית. עם שבב M3 Max, מסך גדול ומרהיב ויכולת לתמוך בזיכרון RAM ענק, הוא מסוגל להתמודד עם המשימות התובעניות ביותר. המחשב מצטיין בעריכת וידאו ברזולוציה גבוהה, פיתוח תוכנה מורכב ועבודה עם מודלים תלת-ממדיים.            `,
@@ -39,7 +77,7 @@ const productData = {
             id: 3,
             name: "MacBook Air (M2)",
             description: "Apple M2, 8GB RAM, 256GB SSD",
-            price: "₪5,199",
+            basePrice: "5,199",
             image: "/group14/img/MacBookAir.jpeg",
             fullDescription: `
                 MacBook Air החדש מציג עיצוב מחודש ודק במיוחד עם שבב M2 רב-עוצמה. זהו המחשב האידיאלי לשימוש יומיומי, עבודה ולימודים. למרות משקלו הקל והפרופיל הדק, הוא מספק ביצועים מעולים וסוללה שמחזיקה לאורך כל היום. המסך החדש והמצלמה המשופרת הופכים אותו למושלם גם לשיחות וידאו ועבודה מרחוק. 
@@ -57,7 +95,7 @@ const productData = {
             id : 4,
             name: "iMac 24″",
             description: "Apple M3, 8GB RAM, 256GB SSD",
-            price: "₪6,499",
+            basePrice: "6,499",
             image: "/group14/img/imac.jpg",
             fullDescription: `
                  iMac 24" מביא עיצוב צבעוני ורענן למחשב השולחני עם שבב M3 חזק. המסך המרהיב ברזולוציה 4.5K מספק חוויית צפייה יוצאת דופן, והמצלמה והמיקרופונים המשופרים הופכים אותו למושלם לשיחות וידאו. זהו מחשב אידיאלי למשרד הביתי, משפחות ואנשי מקצוע שמחפשים פתרון הכל-כלול אלגנטי.
@@ -74,7 +112,7 @@ const productData = {
             id: 5,
             name: "MacBook Air 15",
             description: "M2, 8GB RAM, 256GB SSD",
-            price: "₪6,199",
+            basePrice: "6,199",
             image: "/group14/img/MacbookAir15.webp",
             fullDescription: `
                 MacBook Air 15" מציע מסך גדול יותר בגוף דק במיוחד.
@@ -93,7 +131,7 @@ const productData = {
             id: 6,
             name: "MacBook Air 13",
             description: "M1, 8GB RAM, 256GB SSD",
-            price: "₪4,499",
+            basePrice: "4,499",
             image: "/group14/img/MacBookAir13.jpg",
             fullDescription: `
                 MacBook Air M1 מציע ביצועים מעולים במחיר משתלם.
@@ -112,7 +150,7 @@ const productData = {
                 id: 7,
                 name: "Mac mini",
                 description: "M2 Pro, 16GB RAM, 512GB SSD",
-                price: "₪5,199",
+                basePrice: "5,199",
                 image: "/group14/img/MacMINI.webp",
                 fullDescription: `
                     Mac mini עם שבב M2 Pro מספק עוצמה אדירה בגוף קטן.
@@ -131,7 +169,7 @@ const productData = {
                 id: 8,
                 name: "Mac mini",
                 description: "M2, 8GB RAM, 256GB SSD",
-                price: "₪2,999",
+                basePrice: "2,999",
                 image: "/group14/img/MacMINI2.jpeg",
                 fullDescription: `
                     Mac mini עם שבב M2 מציע ביצועים מצוינים במחיר משתלם.
@@ -150,7 +188,7 @@ const productData = {
                 id: 9,
                 name: "Mac Studio",
                 description: "M2 Ultra, 64GB RAM, 1TB SSD",
-                price: "₪19,999",
+                basePrice: "19,999",
                 image: "/group14/img/MacStudio.jpg",
                 fullDescription: `
                     Mac Studio עם M2 Ultra מציע את העוצמה המקסימלית.
@@ -169,7 +207,7 @@ const productData = {
                 id: 10,
                 name: "Mac Studio",
                 description: "M2 Max, 32GB RAM, 512GB SSD",
-                price: "₪8,999",
+                basePrice: "8,999",
                 image: "/group14/img/MacStudio.jpg",
                 fullDescription: `
                     Mac Studio עם M2 Max מספק ביצועים מקצועיים.
@@ -190,7 +228,7 @@ const productData = {
             id: 1,
             name: "iPad Pro 12.9″",
             description: "Apple M2, 8GB RAM, Wi-Fi 6E",
-            price: "₪4,999",
+            basePrice: "4,999",
             image: "/group14/img/ipadPro.jpg",
             fullDescription: `
                 iPad Pro 12.9″ עם שבב M2 מספק ביצועים חזקים במיוחד. 
@@ -209,7 +247,7 @@ const productData = {
             id: 2,
             name: "iPad Pro 11″",
             description: "Apple M2, 8GB RAM, Wi-Fi",
-            price: "₪3,999",
+            basePrice: "3,999",
             image: "/group14/img/ipadPro.jpg",
             fullDescription: `
                    iPad Pro 11″ עם שבב M2 מציע ביצועים חזקים בגודל קומפקטי יותר. 
@@ -228,7 +266,7 @@ const productData = {
             id: 3,
             name: "iPad Air",
             description: "Apple M1, 8GB RAM, Wi-Fi",
-            price: "₪2,699",
+            basePrice: "2,699",
             image: "/group14/img/IpadAIR.jpeg",
             fullDescription: `
                      iPad Air עם שבב M1 מספק ביצועים מעולים במארז דק ואלגנטי.
@@ -247,7 +285,7 @@ const productData = {
             id: 4,
             name: "iPad",
             description: "Apple A14 Bionic, Wi-Fi",
-            price: "₪2,099",
+            basePrice: "2,099",
             image: "/group14/img/ipad.png",
             fullDescription: `
                             iPad דור 10 מציע חוויית משתמש מעולה במחיר משתלם.
@@ -266,7 +304,7 @@ const productData = {
             id: 5,
             name: "iPad mini",
             description: "Apple A15 Bionic, Wi-Fi",
-            price: "₪2,299",
+            basePrice: "2,299",
             image: "/group14/img/IpadMINI.jpeg",
             fullDescription: `
                                  iPad mini מציע עוצמה מקסימלית בגודל מינימלי.
@@ -287,7 +325,7 @@ const productData = {
            id: 1,
              name: "iPhone 15 Pro Max",
              description: "256GB",
-            price: "₪5,999",
+            basePrice: "5,999",
             image: "/group14/img/iphone15ProMax.webp",
              fullDescription: `
                   iPhone 15 Pro Max עם שבב A17 Pro מספק ביצועים פורצי דרך.
@@ -306,7 +344,7 @@ const productData = {
             id: 2,
             name: "iPhone 15 Pro",
             description: "128GB",
-            price: "₪4,999",
+            basePrice: "4,999",
             image: "/group14/img/iphone15pro.png",
             fullDescription: `
                    iPhone 15 Pro מציע את כל החידושים בגודל קומפקטי יותר.
@@ -325,7 +363,7 @@ const productData = {
            id: 3,
            name: "iPhone 15 Plus",
            description: "128GB",
-           price: "₪4,199",
+           basePrice: "4,199",
            image: "/group14/img/iphone15PLUS.jpeg",
            fullDescription: `
                iPhone 15 Plus מציג מסך גדול של 6.7 אינץ' עם שבב A16 Bionic.
@@ -344,7 +382,7 @@ const productData = {
            id: 4,
            name: "iPhone 15",
            description: "128GB",
-           price: "₪3,799",
+           basePrice: "3,799",
            image: "/group14/img/iphone15.jpg",
            fullDescription: `
                iPhone 15 משלב עיצוב מודרני עם ביצועים מעולים.
@@ -363,7 +401,7 @@ const productData = {
            id: 5,
            name: "iPhone 14 Plus",
            description: "128GB",
-           price: "₪3,599",
+           basePrice: "3,599",
            image: "/group14/img/iphone14plus.png",
            fullDescription: `
                iPhone 14 Plus מציע מסך גדול של 6.7 אינץ' וסוללה חזקה במיוחד.
@@ -382,7 +420,7 @@ const productData = {
            id: 6,
            name: "iPhone 14",
            description: "128GB",
-           price: "₪3,199",
+           basePrice: "3,199",
            image: "/group14/img/iphone14.jpg",
            fullDescription: `
                iPhone 14 מציע ביצועים מעולים במחיר משתלם.
@@ -401,7 +439,7 @@ const productData = {
            id: 7,
            name: "iPhone 13",
            description: "128GB",
-           price: "₪2,999",
+           basePrice: "2,999",
            image: "/group14/img/iphone13.webp",
            fullDescription: `
                iPhone 13 מציע ערך מצוין עם שבב A15 Bionic החזק.
@@ -420,7 +458,7 @@ const productData = {
            id: 8,
            name: "iPhone 13 mini",
            description: "128GB",
-           price: "₪2,699",
+           basePrice: "2,699",
            image: "/group14/img/iphone13MINI.jpg",
            fullDescription: `
                iPhone 13 mini מציע את כל היתרונות של iPhone 13 בגוף קטן וקומפקטי.
@@ -441,7 +479,7 @@ const productData = {
             id: 1,
             name: "Apple Watch Ultra 2",
             description: "49mm, GPS + Cellular",
-            price: "₪3,999",
+            basePrice: "3,999",
             image: "/group14/img/applewatchultra2.jpg",
             fullDescription: `
                Apple Watch Ultra 2 מציע את חווית השעון החזקה ביותר של אפל.
@@ -460,7 +498,7 @@ const productData = {
            id: 2,
            name: "Apple Watch Series 9",
            description: "45mm, GPS",
-           price: "₪1,999",
+           basePrice: "1,999",
            image: "/group14/img/applewatchs9.png",
            fullDescription: `
                Apple Watch Series 9 עם שבב S9 החדש מציע ביצועים משופרים.
@@ -479,7 +517,7 @@ const productData = {
            id: 3,
            name: "Apple Watch Series 9",
            description: "41mm, GPS",
-           price: "₪1,799",
+           basePrice: "1,799",
            image: "/group14/img/applewatchs9.png",
            fullDescription: `
                Apple Watch Series 9 בגרסת 41mm מושלם לפרק יד קטן יותר.
@@ -498,7 +536,7 @@ const productData = {
            id: 4,
            name: "Apple Watch SE",
            description: "44mm, GPS",
-           price: "₪1,249",
+           basePrice: "1,249",
            image: "/group14/img/AppleWatchSE.jpg",
            fullDescription: `
                Apple Watch SE מציע את התכונות החיוניות במחיר משתלם.
@@ -517,7 +555,7 @@ const productData = {
            id: 5,
            name: "Apple Watch SE",
            description: "40mm, GPS",
-           price: "₪1,099",
+           basePrice: "1,099",
            image: "/group14/img/AppleWatchSE2.jpg",
            fullDescription: `
                Apple Watch SE בגרסת 40mm מציע חווית שעון חכם במחיר נגיש.
@@ -536,7 +574,7 @@ const productData = {
            id: 6,
            name: "Apple Watch Series 9",
            description: "45mm, GPS + Cellular",
-           price: "₪3,299",
+           basePrice: "3,299",
            image: "/group14/img/applewatchseries9.png",
            fullDescription: `
                Apple Watch Series 9 בגרסת פלדת אל-חלד היוקרתית.
@@ -557,7 +595,7 @@ const productData = {
            id: 1,
            name: "AirPods Pro",
            description: "דור 2, USB-C",
-           price: "₪999",
+           basePrice: "999",
            image: "/group14/img/airpodsPro.webp",
            fullDescription: `
                AirPods Pro דור 2 עם ביטול רעשים אקטיבי משופר.
@@ -576,7 +614,7 @@ const productData = {
            id: 2,
            name: "AirPods",
            description: "דור 3",
-           price: "₪799",
+           basePrice: "799",
            image: "/group14/img/airpods.jpg",
            fullDescription: `
                AirPods דור 3 עם עיצוב מעודכן ושמע מרחבי.
@@ -595,7 +633,7 @@ const productData = {
            id: 3,
            name: "AirPods Max",
            description: "אוזניות Over-Ear",
-           price: "₪2,199",
+           basePrice: "2,199",
            image: "/group14/img/airpodsMax.jpg",
            fullDescription: `
                AirPods Max מציעות חווית שמע פרימיום ברמה הגבוהה ביותר.
@@ -614,7 +652,7 @@ const productData = {
            id: 4,
            name: "Magic Keyboard",
            description: "עם משטח מגע",
-           price: "₪599",
+           basePrice: "599",
            image: "/group14/img/magickeyboard.png",
            fullDescription: `
                Magic Keyboard עם משטח מגע מובנה לחוויית הקלדה מושלמת.
@@ -633,7 +671,7 @@ const productData = {
            id: 5,
            name: "Apple Pencil",
            description: "דור 2",
-           price: "₪599",
+           basePrice: "599",
            image: "/group14/img/applepencil.webp",
            fullDescription: `
                Apple Pencil דור 2 מציע דיוק מושלם ותגובה מיידית.
@@ -652,7 +690,7 @@ const productData = {
            id: 6,
            name: "MagSafe Charger",
            description: "מטען אלחוטי",
-           price: "₪199",
+           basePrice: "199",
            image: "/group14/img/magSafe.png",
            fullDescription: `
                MagSafe Charger מספק טעינה אלחוטית מהירה ונוחה.
@@ -671,7 +709,7 @@ const productData = {
            id: 7,
            name: "Magic Mouse",
            description: "משטח מגע רב-מגע",
-           price: "₪349",
+           basePrice: "349",
            image: "/group14/img/MagicMouse.jpg",
            fullDescription: `
                Magic Mouse עם משטח רב-מגע לשליטה אינטואיטיבית.
@@ -690,7 +728,7 @@ const productData = {
            id: 8,
            name: "AirTag",
            description: "מעקב מיקום מדויק",
-           price: "₪139",
+           basePrice: "139",
            image: "/group14/img/airtag.jpeg",
            fullDescription: `
                AirTag מאפשר מעקב מדויק אחר חפצים חשובים.
@@ -708,16 +746,58 @@ const productData = {
     ]
 };
 
+
+// Function to format price in Israeli Shekels
+function formatPrice(price) {
+    return `₪${price.toLocaleString()}`;
+}
+
+// Function to get base price plus storage price
+function calculateTotalPrice(basePrice, storageOption) {
+    const storagePrice = storageOption ? storageOption.priceAdd : 0;
+    return basePrice + storagePrice;
+}
+
 // Function to create a product card
-function createProductCard(product) {
+function createProductCard(product, category) {
+    const hasColorOptions = defaultColors[category];
+    const hasStorageOptions = defaultStorage[category];
+
+    const optionsHtml = (hasColorOptions || hasStorageOptions) ? `
+        <div class="product-options">
+            ${hasColorOptions ? `
+                <div class="color-preview">
+                    ${defaultColors[category].slice(0, 3).map(color => `
+                        <span class="color-dot" style="background-color: ${color.value}" title="${color.name}"></span>
+                    `).join('')}
+                    ${defaultColors[category].length > 3 ? `
+                        <span class="color-more">+${defaultColors[category].length - 3}</span>
+                    ` : ''}
+                </div>
+            ` : ''}
+            ${hasStorageOptions ? `
+                <div class="storage-preview">
+                    <span>${defaultStorage[category][0].size}</span>
+                    ${defaultStorage[category].length > 1 ? `
+                        <span class="storage-separator">-</span>
+                        <span>${defaultStorage[category][defaultStorage[category].length - 1].size}</span>
+                    ` : ''}
+                </div>
+            ` : ''}
+        </div>
+    ` : '';
+
     return `
         <div class="product-card" data-product-id="${product.id}">
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}">
             </div>
-            <h3 class="product-name">${product.name}</h3>
-            <p class="product-description">${product.description}</p>
-            <p class="product-price">${product.price}</p>
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-description">${product.description}</p>
+                ${optionsHtml}
+                <p class="product-price">${formatPrice(product.basePrice)}</p>
+            </div>
         </div>
     `;
 }
@@ -736,7 +816,7 @@ export function displayProducts(category) {
         return;
     }
 
-    productGrid.innerHTML = products.map(createProductCard).join('');
+    productGrid.innerHTML = products.map(product => createProductCard(product, category)).join('');
 
     // Add click event listeners to product cards
     document.querySelectorAll('.product-card').forEach(card => {
@@ -746,11 +826,29 @@ export function displayProducts(category) {
         });
     });
 
-    // Update navigation highlighting
     updateNavigationHighlight(category);
 }
 
-// Function to navigate to the product details page
+// Function to get product details
+export async function getProductDetails(category, productId) {
+    if (!productData[category]) {
+        throw new Error(`Category '${category}' not found`);
+    }
+
+    const product = productData[category].find(p => p.id === parseInt(productId));
+    if (!product) {
+        throw new Error(`Product with ID ${productId} not found in category ${category}`);
+    }
+
+    return {
+        ...product,
+        availableColors: defaultColors[category] || [],
+        availableStorage: defaultStorage[category] || [],
+        category
+    };
+}
+
+// Function to navigate to product details page
 function navigateToProductPage(category, productId) {
     window.location.href = `/group14/pages/product.html?category=${category}&id=${productId}`;
 }
@@ -765,20 +863,6 @@ function updateNavigationHighlight(currentCategory) {
             link.classList.remove('active');
         }
     });
-}
-
-// Function to get product details
-export async function getProductDetails(category, productId) {
-    if (!productData[category]) {
-        throw new Error(`Category '${category}' not found`);
-    }
-
-    const product = productData[category].find(p => p.id === parseInt(productId));
-    if (!product) {
-        throw new Error(`Product with ID ${productId} not found in category ${category}`);
-    }
-
-    return product;
 }
 
 // Helper function to get URL parameters
@@ -803,3 +887,105 @@ export function handleError(message, container) {
         `;
     }
 }
+
+// Update product page with details and options
+export function updateProductPage(product) {
+    const category = new URLSearchParams(window.location.search).get('category');
+    const basePrice = parseInt(product.basePrice.replace(',', ''));
+
+    document.getElementById('product-image').src = product.image;
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-description').textContent = product.fullDescription || product.description;
+    document.getElementById('product-price').textContent = formatPrice(basePrice);
+
+    // Add color options if available
+    const colorOptions = document.getElementById('color-options');
+    const colorGroup = colorOptions?.closest('.option-group');
+    if (colorGroup && defaultColors[category]) {
+        colorOptions.innerHTML = defaultColors[category].map((color, index) => `
+            <div class="color-option ${index === 0 ? 'selected' : ''}" data-color="${color.name}">
+                <span class="color-swatch" style="background-color: ${color.value}"></span>
+                <span>${color.name}</span>
+            </div>
+        `).join('');
+
+        // Add click handlers for color options
+        colorOptions.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', () => {
+                colorOptions.querySelectorAll('.color-option').forEach(opt =>
+                    opt.classList.remove('selected')
+                );
+                option.classList.add('selected');
+
+                // Update selected color in current product
+                if (window.currentProduct) {
+                    window.currentProduct.selectedColor = option.dataset;
+                }
+            });
+        });
+    } else if (colorGroup) {
+        colorGroup.style.display = 'none';
+    }
+
+    // Add storage options if available
+    const storageOptions = document.getElementById('storage-options');
+    const storageGroup = storageOptions?.closest('.option-group');
+    if (storageGroup && defaultStorage[category]) {
+        storageOptions.innerHTML = defaultStorage[category].map((storage, index) => `
+            <div class="storage-option ${index === 0 ? 'selected' : ''}" 
+                 data-storage="${storage.size}" 
+                 data-price-add="${storage.priceAdd}">
+                <span class="storage-size">${storage.size}</span>
+                <span class="storage-price">
+                    ${storage.priceAdd > 0 ? `+${formatPrice(storage.priceAdd)}` : 'כלול'}
+                </span>
+            </div>
+        `).join('');
+
+        // Add click handlers for storage options
+        storageOptions.querySelectorAll('.storage-option').forEach(option => {
+            option.addEventListener('click', () => {
+                storageOptions.querySelectorAll('.storage-option').forEach(opt =>
+                    opt.classList.remove('selected')
+                );
+                option.classList.add('selected');
+
+                // Update price based on selected storage
+                const priceAdd = parseInt(option.dataset.priceAdd) || 0;
+                const totalPrice = basePrice + priceAdd;
+                window.currentProduct.totalPrice = totalPrice;
+                document.getElementById('product-price').textContent = formatPrice(totalPrice);
+
+                // Update selected storage in current product
+                if (window.currentProduct) {
+                    window.currentProduct.selectedStorage = option.dataset.storage;
+                    window.currentProduct.currentPrice = formatPrice(totalPrice);
+                }
+            });
+        });
+    } else if (storageGroup) {
+        storageGroup.style.display = 'none';
+    }
+
+    // Update specifications list
+    const specsList = document.getElementById('product-specs');
+    if (specsList && product.specs) {
+        specsList.innerHTML = product.specs.map(spec => `<li>${spec}</li>`).join('');
+    }
+
+    // Store current product data globally
+    window.currentProduct = {
+        ...product,
+        selectedColor: defaultColors[category]?.[0] || null,
+        selectedStorage: defaultStorage[category]?.[0]?.size || null,
+        currentbasePrice: formatPrice(basePrice),
+        totalPrice: basePrice,
+
+    };
+}
+
+// Export configuration objects for use in other modules
+export const productOptions = {
+    colors: defaultColors,
+    storage: defaultStorage
+};

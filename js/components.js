@@ -1,15 +1,12 @@
-// Function to load components
 async function loadComponent(elementId, componentPath, basePath = '') {
     try {
         const response = await fetch(componentPath);
         let html = await response.text();
 
-        // Replace base path placeholder
         html = html.replace(/{{group14}}/g, basePath);
 
         document.getElementById(elementId).innerHTML = html;
 
-        // Reinitialize any necessary event listeners
         initializeHeaderEvents();
     } catch (error) {
         console.error('Error loading component:', error);

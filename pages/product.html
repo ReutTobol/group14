@@ -2,9 +2,14 @@
 <html dir="rtl" lang="he">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppleSpot - Product Details</title>
+
     <link rel="stylesheet" href="/group14/css/header.css">
     <link rel="stylesheet" href="/group14/css/product-page.css">
+    <link rel="stylesheet" href="/group14/css/product-options.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="product-page">
     <div id="header-component"></div>
@@ -19,10 +24,22 @@
             <p id="product-description" class="product-description"></p>
             <p id="product-price" class="product-price"></p>
 
+            <div class="options-container">
+                <div class="option-group color-group">
+                    <h3>צבע</h3>
+                    <div class="color-options" id="color-options"></div>
+                </div>
+
+                <div class="option-group storage-group">
+                    <h3>נפח אחסון</h3>
+                    <div class="storage-options" id="storage-options"></div>
+                </div>
+            </div>
+
             <div class="quantity-selector">
-                <button onclick="decrementQuantity()">-</button>
+                <button onclick="decrementQuantity()" class="quantity-btn">-</button>
                 <input type="number" id="quantity" value="1" min="1" max="99" onchange="validateQuantity(this)">
-                <button onclick="incrementQuantity()">+</button>
+                <button onclick="incrementQuantity()" class="quantity-btn">+</button>
             </div>
 
             <div class="product-specs-container">
@@ -31,39 +48,41 @@
             </div>
 
             <div class="product-actions">
-                <button onclick="addToCart()" class="btn-primary">הוסף לעגלה</button>
+                <button onclick="addToCart()" class="btn-primary">
+                    <span class="button-text">הוסף לעגלה</span>
+                </button>
                 <button onclick="window.history.back()" class="btn-secondary">חזור לקניות</button>
             </div>
         </div>
     </div>
 
+    <script type="module" src="/group14/js/product-gallery.js"></script>
     <script src="/group14/js/components.js"></script>
-    <script src="/group14/js/main.js"></script>
     <script type="module">
-        import { getProductDetails } from '/group14/js/product-gallery.js';
+        import {getProductDetails, updateProductPage} from '/group14/js/product-gallery.js';
         import { CartService } from '/group14/js/cart-service.js';
 
         window.cartService = CartService;
         let currentProduct = null;
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadComponent('header-component', '/group14/components/header.html');
+            try {
+                await loadComponent('header-component', '/group14/components/header.html');
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const category = urlParams.get('category') || 'mac';
-            const productId = urlParams.get('id');
+                const urlParams = new URLSearchParams(window.location.search);
+                const category = urlParams.get('category') || 'mac';
+                const productId = urlParams.get('id');
 
-            if (productId) {
-                try {
+                if (productId) {
                     currentProduct = await getProductDetails(category, productId);
                     if (currentProduct) {
                         updateProductPage(currentProduct);
                     } else {
-                        console.error('Product details not found.');
+                        console.error('Product details not found');
                     }
-                } catch (error) {
-                    console.error('Error fetching product:', error);
                 }
+            } catch (error) {
+                console.error('Error initializing product page:', error);
             }
         });
 
@@ -95,46 +114,31 @@
         window.addToCart = function() {
         if (window.currentProduct) {
             const quantity = parseInt(document.getElementById('quantity').value);
+            console.log(window.currentProduct)
+            const currentProduct = window.currentProduct;
+            const productSku = `${currentProduct.id}-${currentProduct.selectedColor.sku}-${currentProduct.selectedStorage}`
             window.cartService.addToCart({
                 ...window.currentProduct,
                 quantity: quantity,
+                totalPrice: currentProduct.totalPrice,
+                sku:productSku,
                 category: new URLSearchParams(window.location.search).get('category')
             });
 
-            // Visual feedback
-            const button = document.querySelector('.btn-primary');
-            button.classList.add('added');
-            button.textContent = 'נוסף לעגלה!'
+                // Visual feedback
+                const button = document.querySelector('.btn-primary');
+                button.classList.add('added');
+                button.querySelector('.button-text').textContent = 'נוסף לעגלה!';
 
-            // Reset button after animation
-            setTimeout(() => {
-                button.classList.remove('added');
-                button.textContent = 'הוסף לעגלה'
-            }, 2000);
-        } else {
-            console.error('No product data available');
-        }
-    };
-
-        function updateProductPage(product) {
-            document.getElementById('product-image').src = product.image;
-            document.getElementById('product-name').textContent = product.name;
-            document.getElementById('product-description').textContent = product.fullDescription || product.description;
-            document.getElementById('product-price').textContent = product.price;
-
-            const specsList = document.getElementById('product-specs');
-            specsList.innerHTML = '';
-            if (product.specs) {
-                product.specs.forEach(spec => {
-                    const li = document.createElement('li');
-                    li.textContent = spec;
-                    specsList.appendChild(li);
-                });
+                // Reset button after animation
+                setTimeout(() => {
+                    button.classList.remove('added');
+                    button.querySelector('.button-text').textContent = 'הוסף לעגלה';
+                }, 1000);
+            } else {
+                console.error('No product data available');
             }
-
-            // Store current product data globally
-            window.currentProduct = product;
-        }
+        };
     </script>
 </body>
 </html>

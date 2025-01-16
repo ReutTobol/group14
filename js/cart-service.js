@@ -24,12 +24,13 @@ export const CartService = {
     },
 
     addToCart(product) {
+        console.log(product)
         try {
             const cart = this.getCart();
             const quantity = product.quantity || 1;
 
             // Check if product is already in cart
-            const existingItem = cart.find(item => item.id === product.id);
+            const existingItem = cart.find(item => item.sku === product.sku);
 
             if (existingItem) {
                 existingItem.quantity += quantity;
@@ -38,8 +39,9 @@ export const CartService = {
                     id: product.id,
                     category: product.category,
                     name: product.name,
-                    price: product.price,
+                    price: product.currentPrice || product.currentbasePrice,
                     image: product.image,
+                    sku: product.sku,
                     quantity: quantity
                 });
             }
@@ -52,9 +54,13 @@ export const CartService = {
         }
     },
 
-    removeFromCart(productId) {
+    removeFromCart(product) {
+        console.log('productSku', product.sku)
         const cart = this.getCart();
-        const updatedCart = cart.filter(item => item.id !== productId);
+        const updatedCart = cart.filter(item => {
+            console.log('itemSku', item.sku)
+            return item.sku !== product.sku
+        });
         this.saveCart(updatedCart);
     },
 
@@ -81,8 +87,12 @@ export const CartService = {
     getCartTotal() {
         const cart = this.getCart();
         return cart.reduce((total, item) => {
-            const price = parseFloat(item.price.replace('₪', '').replace(',', ''));
+            const price = this.getItemPrice(item)
             return total + (price * item.quantity);
         }, 0);
+    },
+
+    getItemPrice(item) {
+        return parseFloat(item.price.toString().replace('₪', '').replace(',', ''));
     }
 };
