@@ -116,7 +116,9 @@
             const quantity = parseInt(document.getElementById('quantity').value);
             console.log(window.currentProduct)
             const currentProduct = window.currentProduct;
-            const productSku = `${currentProduct.id}-${currentProduct.selectedColor.sku}-${currentProduct.selectedStorage}`
+            let productSku = `${currentProduct.id}`
+            if (currentProduct.selectedColor && currentProduct.selectedStorage)
+                productSku += `${currentProduct.id}-${currentProduct.selectedColor.sku}-${currentProduct.selectedStorage}`
             window.cartService.addToCart({
                 ...window.currentProduct,
                 quantity: quantity,

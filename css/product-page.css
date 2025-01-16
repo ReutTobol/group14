@@ -217,12 +217,10 @@
 
 .btn-primary.added .button-text {
     opacity: 100;
-    transform: translateY(20px);
 }
 
 .btn-primary.added .success-icon {
     opacity: 100;
-    transform: translate(-50%, -50%) scale(1);
 }
 
 @keyframes addedAnimation {
