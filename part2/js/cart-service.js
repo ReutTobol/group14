@@ -24,7 +24,6 @@ export const CartService = {
     },
 
     addToCart(product) {
-        console.log(product)
         try {
             const cart = this.getCart();
             const quantity = product.quantity || 1;
@@ -55,10 +54,8 @@ export const CartService = {
     },
 
     removeFromCart(product) {
-        console.log('productSku', product.sku)
         const cart = this.getCart();
         const updatedCart = cart.filter(item => {
-            console.log('itemSku', item.sku)
             return item.sku !== product.sku
         });
         this.saveCart(updatedCart);

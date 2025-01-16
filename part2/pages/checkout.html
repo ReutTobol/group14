@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>AppleSpot - תשלום</title>
-    <link rel="stylesheet" href="/group14/css/style.css">
-    <link rel="stylesheet" href="/group14/css/checkout.css">
+    <link rel="stylesheet" href="/group14/part2/css/style.css">
+    <link rel="stylesheet" href="/group14/part2/css/checkout.css">
 </head>
 <body>
     <div id="header-component"></div>
@@ -85,12 +85,12 @@
         </form>
     </main>
 
-    <script src="/group14/js/components.js"></script>
+    <script src="/group14/part2/js/components.js"></script>
     <script type="module">
-        import { CartService } from '/group14/js/cart-service.js';
+        import { CartService } from '/group14/part2/js/cart-service.js';
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadComponent('header-component', '/group14/components/header.html');
+            await loadComponent('header-component', '/group14/part2/components/header.html');
             updateOrderSummary();
         });
 
@@ -186,7 +186,7 @@
             });
 
             CartService.clearCart();
-            window.location.href = `/group14/pages/thank-you.html?${params.toString()}`;
+            window.location.href = `thank-you.html`;
         };
     </script>
 </body>

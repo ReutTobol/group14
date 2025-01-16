@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>AppleSpot - עגלת קניות</title>
-    <link rel="stylesheet" href="/group14/css/style.css">
-    <link rel="stylesheet" href="/group14/css/cart.css">
+    <link rel="stylesheet" href="/group14/part2/css/style.css">
+    <link rel="stylesheet" href="/group14/part2/css/cart.css">
 </head>
 <body>
 <div id="header-component"></div>
@@ -23,19 +23,19 @@
     </div>
 </main>
 
-<script src="/group14/js/components.js"></script>
+<script src="/group14/part2/js/components.js"></script>
 <script type="module">
-    import {CartService} from '/group14/js/cart-service.js';
+    import {CartService} from '/group14/part2/js/cart-service.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
-        await loadComponent('header-component', '/group14/components/header.html');
+        await loadComponent('header-component', '/group14/part2/components/header.html');
         renderCart();
         setupCheckoutButton();
     });
 
     function setupCheckoutButton() {
         document.getElementById('checkout-btn').addEventListener('click', () => {
-            window.location.href = '/group14/pages/checkout.html';
+            window.location.href = 'checkout.html';
         });
     }
 

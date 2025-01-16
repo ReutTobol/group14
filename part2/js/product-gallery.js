@@ -44,7 +44,7 @@ export const productData = {
             name: "MacBook Pro 14″",
             description: "M3 Pro, 18GB RAM, 512GB SSD",
             basePrice: "7,999",
-            image: "/group14/img/macbook.webp",
+            image: "/group14/part2/img/macbook.webp",
             fullDescription: `
                 MacBook Pro 14" עם שבב M3 Pro מציע ביצועים מרשימים במיוחד לאנשי מקצוע ומשתמשים מתקדמים. המחשב מצויד במסך Liquid Retina XDR מתקדם המספק איכות תצוגה מדהימה עם צבעים מדויקים ורמת בהירות גבוהה. הוא מושלם למעצבים, עורכי וידאו ומפתחים הזקוקים לביצועים גבוהים ודיוק צבעים. המחשב כולל סוללה חזקה המספקת עד 22 שעות עבודה, מערכת שמע מתקדמת וחיבורים מגוונים לכל צורך מקצועי.
             `,
@@ -62,7 +62,7 @@ export const productData = {
             name: "MacBook Pro 16″",
             description: "M3 MAX, 128GB RAM, 8TB SSD",
             basePrice: "9,999",
-            image: "/group14/img/macbook.webp",
+            image: "/group14/part2/img/macbook.webp",
             fullDescription: `
                 MacBook Pro 16" הוא המחשב הנייד החזק ביותר של אפל, המיועד לאנשי מקצוע הזקוקים לעוצמה מקסימלית. עם שבב M3 Max, מסך גדול ומרהיב ויכולת לתמוך בזיכרון RAM ענק, הוא מסוגל להתמודד עם המשימות התובעניות ביותר. המחשב מצטיין בעריכת וידאו ברזולוציה גבוהה, פיתוח תוכנה מורכב ועבודה עם מודלים תלת-ממדיים.            `,
             specs: [
@@ -78,7 +78,7 @@ export const productData = {
             name: "MacBook Air (M2)",
             description: "Apple M2, 8GB RAM, 256GB SSD",
             basePrice: "5,199",
-            image: "/group14/img/MacBookAir.jpeg",
+            image: "/group14/part2/img/MacBookAir.jpeg",
             fullDescription: `
                 MacBook Air החדש מציג עיצוב מחודש ודק במיוחד עם שבב M2 רב-עוצמה. זהו המחשב האידיאלי לשימוש יומיומי, עבודה ולימודים. למרות משקלו הקל והפרופיל הדק, הוא מספק ביצועים מעולים וסוללה שמחזיקה לאורך כל היום. המסך החדש והמצלמה המשופרת הופכים אותו למושלם גם לשיחות וידאו ועבודה מרחוק. 
                 `,
@@ -96,7 +96,7 @@ export const productData = {
             name: "iMac 24″",
             description: "Apple M3, 8GB RAM, 256GB SSD",
             basePrice: "6,499",
-            image: "/group14/img/imac.jpg",
+            image: "/group14/part2/img/imac.jpg",
             fullDescription: `
                  iMac 24" מביא עיצוב צבעוני ורענן למחשב השולחני עם שבב M3 חזק. המסך המרהיב ברזולוציה 4.5K מספק חוויית צפייה יוצאת דופן, והמצלמה והמיקרופונים המשופרים הופכים אותו למושלם לשיחות וידאו. זהו מחשב אידיאלי למשרד הביתי, משפחות ואנשי מקצוע שמחפשים פתרון הכל-כלול אלגנטי.
             `,
@@ -113,7 +113,7 @@ export const productData = {
             name: "MacBook Air 15",
             description: "M2, 8GB RAM, 256GB SSD",
             basePrice: "6,199",
-            image: "/group14/img/MacbookAir15.webp",
+            image: "/group14/part2/img/MacbookAir15.webp",
             fullDescription: `
                 MacBook Air 15" מציע מסך גדול יותר בגוף דק במיוחד.
                 שבב M2 רב עוצמה עם ביצועים מעולים וסוללה ארוכה.
@@ -132,7 +132,7 @@ export const productData = {
             name: "MacBook Air 13",
             description: "M1, 8GB RAM, 256GB SSD",
             basePrice: "4,499",
-            image: "/group14/img/MacBookAir13.jpg",
+            image: "/group14/part2/img/MacBookAir13.jpg",
             fullDescription: `
                 MacBook Air M1 מציע ביצועים מעולים במחיר משתלם.
                 סוללה שמחזיקה עד 18 שעות של שימוש.
@@ -151,7 +151,7 @@ export const productData = {
                 name: "Mac mini",
                 description: "M2 Pro, 16GB RAM, 512GB SSD",
                 basePrice: "5,199",
-                image: "/group14/img/MacMINI.webp",
+                image: "/group14/part2/img/MacMINI.webp",
                 fullDescription: `
                     Mac mini עם שבב M2 Pro מספק עוצמה אדירה בגוף קטן.
                     אפשרויות חיבור מתקדמות כולל Thunderbolt 4.
@@ -170,7 +170,7 @@ export const productData = {
                 name: "Mac mini",
                 description: "M2, 8GB RAM, 256GB SSD",
                 basePrice: "2,999",
-                image: "/group14/img/MacMINI2.jpeg",
+                image: "/group14/part2/img/MacMINI2.jpeg",
                 fullDescription: `
                     Mac mini עם שבב M2 מציע ביצועים מצוינים במחיר משתלם.
                     קטן בגודל אך גדול ביכולות.
@@ -189,7 +189,7 @@ export const productData = {
                 name: "Mac Studio",
                 description: "M2 Ultra, 64GB RAM, 1TB SSD",
                 basePrice: "19,999",
-                image: "/group14/img/MacStudio.jpg",
+                image: "/group14/part2/img/MacStudio.jpg",
                 fullDescription: `
                     Mac Studio עם M2 Ultra מציע את העוצמה המקסימלית.
                     מיועד למקצוענים ולמשימות התובעניות ביותר.
@@ -208,7 +208,7 @@ export const productData = {
                 name: "Mac Studio",
                 description: "M2 Max, 32GB RAM, 512GB SSD",
                 basePrice: "8,999",
-                image: "/group14/img/MacStudio.jpg",
+                image: "/group14/part2/img/MacStudio.jpg",
                 fullDescription: `
                     Mac Studio עם M2 Max מספק ביצועים מקצועיים.
                     מערכת קירור מתקדמת לביצועים מתמשכים.
@@ -229,7 +229,7 @@ export const productData = {
             name: "iPad Pro 12.9″",
             description: "Apple M2, 8GB RAM, Wi-Fi 6E",
             basePrice: "4,999",
-            image: "/group14/img/ipadPro.jpg",
+            image: "/group14/part2/img/ipadPro.jpg",
             fullDescription: `
                 iPad Pro 12.9″ עם שבב M2 מספק ביצועים חזקים במיוחד. 
                 מסך Liquid Retina XDR עם ProMotion לחוויית משתמש מושלמת.
@@ -248,7 +248,7 @@ export const productData = {
             name: "iPad Pro 11″",
             description: "Apple M2, 8GB RAM, Wi-Fi",
             basePrice: "3,999",
-            image: "/group14/img/ipadPro.jpg",
+            image: "/group14/part2/img/ipadPro.jpg",
             fullDescription: `
                    iPad Pro 11″ עם שבב M2 מציע ביצועים חזקים בגודל קומפקטי יותר. 
                    מסך Liquid Retina עם ProMotion לתצוגה חלקה ומהירה.
@@ -267,7 +267,7 @@ export const productData = {
             name: "iPad Air",
             description: "Apple M1, 8GB RAM, Wi-Fi",
             basePrice: "2,699",
-            image: "/group14/img/IpadAIR.jpeg",
+            image: "/group14/part2/img/IpadAIR.jpeg",
             fullDescription: `
                      iPad Air עם שבב M1 מספק ביצועים מעולים במארז דק ואלגנטי.
         מסך Liquid Retina 10.9 אינץ' עם צבעים מדויקים.              
@@ -286,7 +286,7 @@ export const productData = {
             name: "iPad",
             description: "Apple A14 Bionic, Wi-Fi",
             basePrice: "2,099",
-            image: "/group14/img/ipad.png",
+            image: "/group14/part2/img/ipad.png",
             fullDescription: `
                             iPad דור 10 מציע חוויית משתמש מעולה במחיר משתלם.
                              מסך Liquid Retina 10.9 אינץ' עם עיצוב מודרני.
@@ -305,7 +305,7 @@ export const productData = {
             name: "iPad mini",
             description: "Apple A15 Bionic, Wi-Fi",
             basePrice: "2,299",
-            image: "/group14/img/IpadMINI.jpeg",
+            image: "/group14/part2/img/IpadMINI.jpeg",
             fullDescription: `
                                  iPad mini מציע עוצמה מקסימלית בגודל מינימלי.
         מסך Liquid Retina 8.3 אינץ' בעיצוב קומפקטי.                         
@@ -326,7 +326,7 @@ export const productData = {
              name: "iPhone 15 Pro Max",
              description: "256GB",
             basePrice: "5,999",
-            image: "/group14/img/iphone15ProMax.webp",
+            image: "/group14/part2/img/iphone15ProMax.webp",
              fullDescription: `
                   iPhone 15 Pro Max עם שבב A17 Pro מספק ביצועים פורצי דרך.
                   מסגרת טיטניום חזקה ומסך 6.7 אינץ' Super Retina XDR עם ProMotion.
@@ -345,7 +345,7 @@ export const productData = {
             name: "iPhone 15 Pro",
             description: "128GB",
             basePrice: "4,999",
-            image: "/group14/img/iphone15pro.png",
+            image: "/group14/part2/img/iphone15pro.png",
             fullDescription: `
                    iPhone 15 Pro מציע את כל החידושים בגודל קומפקטי יותר.
                    מסגרת טיטניום ומסך 6.1 אינץ' Super Retina XDR עם ProMotion.
@@ -364,7 +364,7 @@ export const productData = {
            name: "iPhone 15 Plus",
            description: "128GB",
            basePrice: "4,199",
-           image: "/group14/img/iphone15PLUS.jpeg",
+           image: "/group14/part2/img/iphone15PLUS.jpeg",
            fullDescription: `
                iPhone 15 Plus מציג מסך גדול של 6.7 אינץ' עם שבב A16 Bionic.
                מצלמה משודרגת של 48MP לצילומים מרהיבים.
@@ -383,7 +383,7 @@ export const productData = {
            name: "iPhone 15",
            description: "128GB",
            basePrice: "3,799",
-           image: "/group14/img/iphone15.jpg",
+           image: "/group14/part2/img/iphone15.jpg",
            fullDescription: `
                iPhone 15 משלב עיצוב מודרני עם ביצועים מעולים.
                מסך 6.1 אינץ' חד ובהיר עם Dynamic Island.
@@ -402,7 +402,7 @@ export const productData = {
            name: "iPhone 14 Plus",
            description: "128GB",
            basePrice: "3,599",
-           image: "/group14/img/iphone14plus.png",
+           image: "/group14/part2/img/iphone14plus.png",
            fullDescription: `
                iPhone 14 Plus מציע מסך גדול של 6.7 אינץ' וסוללה חזקה במיוחד.
                ביצועים מעולים עם שבב A15 Bionic.
@@ -421,7 +421,7 @@ export const productData = {
            name: "iPhone 14",
            description: "128GB",
            basePrice: "3,199",
-           image: "/group14/img/iphone14.jpg",
+           image: "/group14/part2/img/iphone14.jpg",
            fullDescription: `
                iPhone 14 מציע ביצועים מעולים במחיר משתלם.
                מסך 6.1 אינץ' Super Retina XDR איכותי.
@@ -440,7 +440,7 @@ export const productData = {
            name: "iPhone 13",
            description: "128GB",
            basePrice: "2,999",
-           image: "/group14/img/iphone13.webp",
+           image: "/group14/part2/img/iphone13.webp",
            fullDescription: `
                iPhone 13 מציע ערך מצוין עם שבב A15 Bionic החזק.
                מסך 6.1 אינץ' Super Retina XDR איכותי.
@@ -459,7 +459,7 @@ export const productData = {
            name: "iPhone 13 mini",
            description: "128GB",
            basePrice: "2,699",
-           image: "/group14/img/iphone13MINI.jpg",
+           image: "/group14/part2/img/iphone13MINI.jpg",
            fullDescription: `
                iPhone 13 mini מציע את כל היתרונות של iPhone 13 בגוף קטן וקומפקטי.
                מסך 5.4 אינץ' Super Retina XDR.
@@ -480,7 +480,7 @@ export const productData = {
             name: "Apple Watch Ultra 2",
             description: "49mm, GPS + Cellular",
             basePrice: "3,999",
-            image: "/group14/img/applewatchultra2.jpg",
+            image: "/group14/part2/img/applewatchultra2.jpg",
             fullDescription: `
                Apple Watch Ultra 2 מציע את חווית השעון החזקה ביותר של אפל.
                מסך בהירות עד 3000 nits, גוף טיטניום עמיד במיוחד.
@@ -499,7 +499,7 @@ export const productData = {
            name: "Apple Watch Series 9",
            description: "45mm, GPS",
            basePrice: "1,999",
-           image: "/group14/img/applewatchs9.png",
+           image: "/group14/part2/img/applewatchs9.png",
            fullDescription: `
                Apple Watch Series 9 עם שבב S9 החדש מציע ביצועים משופרים.
                מסך Retina תמידי בהיר, מעקב בריאות מתקדם.
@@ -518,7 +518,7 @@ export const productData = {
            name: "Apple Watch Series 9",
            description: "41mm, GPS",
            basePrice: "1,799",
-           image: "/group14/img/applewatchs9.png",
+           image: "/group14/part2/img/applewatchs9.png",
            fullDescription: `
                Apple Watch Series 9 בגרסת 41mm מושלם לפרק יד קטן יותר.
                כולל את כל התכונות המתקדמות של הסדרה עם שבב S9.
@@ -537,7 +537,7 @@ export const productData = {
            name: "Apple Watch SE",
            description: "44mm, GPS",
            basePrice: "1,249",
-           image: "/group14/img/AppleWatchSE.jpg",
+           image: "/group14/part2/img/AppleWatchSE.jpg",
            fullDescription: `
                Apple Watch SE מציע את התכונות החיוניות במחיר משתלם.
                מעקב כושר ובריאות, התראות חכמות ועיצוב מודרני.
@@ -556,7 +556,7 @@ export const productData = {
            name: "Apple Watch SE",
            description: "40mm, GPS",
            basePrice: "1,099",
-           image: "/group14/img/AppleWatchSE2.jpg",
+           image: "/group14/part2/img/AppleWatchSE2.jpg",
            fullDescription: `
                Apple Watch SE בגרסת 40mm מציע חווית שעון חכם במחיר נגיש.
                כולל את כל התכונות החיוניות בגודל קומפקטי.
@@ -575,7 +575,7 @@ export const productData = {
            name: "Apple Watch Series 9",
            description: "45mm, GPS + Cellular",
            basePrice: "3,299",
-           image: "/group14/img/applewatchseries9.png",
+           image: "/group14/part2/img/applewatchseries9.png",
            fullDescription: `
                Apple Watch Series 9 בגרסת פלדת אל-חלד היוקרתית.
                מסך ספיר קריסטל עמיד במיוחד, גימור יוקרתי.
@@ -596,7 +596,7 @@ export const productData = {
            name: "AirPods Pro",
            description: "דור 2, USB-C",
            basePrice: "999",
-           image: "/group14/img/airpodsPro.webp",
+           image: "/group14/part2/img/airpodsPro.webp",
            fullDescription: `
                AirPods Pro דור 2 עם ביטול רעשים אקטיבי משופר.
                שמע מרחבי מותאם אישית וטכנולוגיית Adaptive Audio.
@@ -615,7 +615,7 @@ export const productData = {
            name: "AirPods",
            description: "דור 3",
            basePrice: "799",
-           image: "/group14/img/airpods.jpg",
+           image: "/group14/part2/img/airpods.jpg",
            fullDescription: `
                AirPods דור 3 עם עיצוב מעודכן ושמע מרחבי.
                חיישני לחץ לשליטה קלה ונוחה.
@@ -634,7 +634,7 @@ export const productData = {
            name: "AirPods Max",
            description: "אוזניות Over-Ear",
            basePrice: "2,199",
-           image: "/group14/img/airpodsMax.jpg",
+           image: "/group14/part2/img/airpodsMax.jpg",
            fullDescription: `
                AirPods Max מציעות חווית שמע פרימיום ברמה הגבוהה ביותר.
                ביטול רעשים אקטיבי מתקדם ושמע מרחבי דינמי.
@@ -653,7 +653,7 @@ export const productData = {
            name: "Magic Keyboard",
            description: "עם משטח מגע",
            basePrice: "599",
-           image: "/group14/img/magickeyboard.png",
+           image: "/group14/part2/img/magickeyboard.png",
            fullDescription: `
                Magic Keyboard עם משטח מגע מובנה לחוויית הקלדה מושלמת.
                עיצוב דק ונוח עם מקשים מוארים.
@@ -672,7 +672,7 @@ export const productData = {
            name: "Apple Pencil",
            description: "דור 2",
            basePrice: "599",
-           image: "/group14/img/applepencil.webp",
+           image: "/group14/part2/img/applepencil.webp",
            fullDescription: `
                Apple Pencil דור 2 מציע דיוק מושלם ותגובה מיידית.
                טעינה אלחוטית מגנטית נוחה.
@@ -691,7 +691,7 @@ export const productData = {
            name: "MagSafe Charger",
            description: "מטען אלחוטי",
            basePrice: "199",
-           image: "/group14/img/magSafe.png",
+           image: "/group14/part2/img/magSafe.png",
            fullDescription: `
                MagSafe Charger מספק טעינה אלחוטית מהירה ונוחה.
                חיבור מגנטי מדויק לטעינה אופטימלית.
@@ -710,7 +710,7 @@ export const productData = {
            name: "Magic Mouse",
            description: "משטח מגע רב-מגע",
            basePrice: "349",
-           image: "/group14/img/MagicMouse.jpg",
+           image: "/group14/part2/img/MagicMouse.jpg",
            fullDescription: `
                Magic Mouse עם משטח רב-מגע לשליטה אינטואיטיבית.
                עיצוב ארגונומי ותנועה חלקה על כל משטח.
@@ -729,7 +729,7 @@ export const productData = {
            name: "AirTag",
            description: "מעקב מיקום מדויק",
            basePrice: "139",
-           image: "/group14/img/airtag.jpeg",
+           image: "/group14/part2/img/airtag.jpeg",
            fullDescription: `
                AirTag מאפשר מעקב מדויק אחר חפצים חשובים.
                משתלב עם אפליקציית 'איתור' לאיתור קל ומהיר.
@@ -850,7 +850,8 @@ export async function getProductDetails(category, productId) {
 
 // Function to navigate to product details page
 function navigateToProductPage(category, productId) {
-    window.location.href = `/group14/pages/product.html?category=${category}&id=${productId}`;
+        window.location.href = `/group14/part2/pages/product.html?category=${category}&id=${productId}`;
+
 }
 
 // Function to update navigation highlighting
@@ -882,7 +883,7 @@ export function handleError(message, container) {
             <div class="error-message">
                 <h2>שגיאה</h2>
                 <p>${message}</p>
-                <a href="/group14/pages/products.html" class="btn-secondary">חזור לדף הראשי</a>
+                <a href="/group14/part2/pages/products.html" class="btn-secondary">חזור לדף הראשי</a>
             </div>
         `;
     }
