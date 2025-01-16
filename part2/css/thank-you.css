@@ -1,0 +1,147 @@
+.thank-you-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.success-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.success-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.checkmark-circle {
+    width: 80px;
+    height: 80px;
+    background: #4CAF50;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    animation: scale-in 0.3s ease-out;
+}
+
+.checkmark {
+    width: 40px;
+    height: 24px;
+    border-left: 4px solid white;
+    border-bottom: 4px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%) rotate(-45deg);
+    animation: checkmark 0.4s ease-in-out 0.2s forwards;
+    opacity: 0;
+}
+
+@keyframes scale-in {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes checkmark {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.success-header h1 {
+    color: #2d3748;
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.order-details {
+    padding: 2rem;
+    background: white;
+}
+
+.order-details h2 {
+    color: #2d3748;
+    font-size: 1.5rem;
+    margin: 0 0 1.5rem;
+}
+
+.details-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.value {
+    color: #2d3748;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.next-steps {
+    padding: 2rem;
+    background: #f8fafc;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+.next-steps p {
+    color: #718096;
+    margin: 0 0 1.5rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.button.primary {
+    background: #3182ce;
+    color: white;
+}
+
+.button.primary:hover {
+    background: #2c5282;
+    transform: translateY(-1px);
+}

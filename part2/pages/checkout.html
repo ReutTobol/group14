@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>AppleSpot - תשלום</title>
+    <link rel="stylesheet" href="/group14/part2/css/style.css">
+    <link rel="stylesheet" href="/group14/part2/css/checkout.css">
+</head>
+<body>
+    <div id="header-component"></div>
+
+    <main class="checkout-container">
+        <form id="checkout-form" onsubmit="handleSubmit(event)">
+            <div class="checkout-section">
+                <h2 class="section-title">פרטים אישיים</h2>
+                <div class="form-group">
+                    <label for="fullName">שם מלא</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">דואר אלקטרוני</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">טלפון</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+            </div>
+
+            <div class="checkout-section">
+                <h2 class="section-title">שיטת משלוח</h2>
+                <div class="delivery-options">
+                    <label class="option-card">
+                        <input type="radio" name="deliveryMethod" value="pickup" onclick="toggleDeliveryAddress(false)" checked>
+                        איסוף עצמי מהחנות
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="deliveryMethod" value="delivery" onclick="toggleDeliveryAddress(true)">
+                        משלוח עד הבית
+                    </label>
+                </div>
+
+                <div id="delivery-address" class="delivery-address hidden">
+                    <div class="form-group">
+                        <label for="street">רחוב ומספר בית</label>
+                        <input type="text" id="street" name="street">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">עיר</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">מיקוד</label>
+                        <input type="text" id="zipCode" name="zipCode">
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-section">
+                <h2 class="section-title">אמצעי תשלום</h2>
+                <div class="payment-options">
+                    <label class="option-card">
+                        <input type="radio" name="paymentMethod" value="bit" checked>
+                        Bit
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="paymentMethod" value="cash">
+                        מזומן
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="paymentMethod" value="wire">
+                        העברה בנקאית
+                    </label>
+                </div>
+            </div>
+
+             Order Summary Section -->
+            <div class="checkout-section">
+                <h2 class="section-title">סיכום הזמנה</h2>
+                <div class="order-summary" id="order-summary">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">בצע הזמנה</button>
+        </form>
+    </main>
+
+    <script src="/group14/part2/js/components.js"></script>
+    <script type="module">
+        import { CartService } from '/group14/part2/js/cart-service.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadComponent('header-component', '/group14/part2/components/header.html');
+            updateOrderSummary();
+        });
+
+        function updateOrderSummary() {
+            const cart = CartService.getCart();
+            const summaryContainer = document.getElementById('order-summary');
+            let html = '';
+
+            cart.forEach(item => {
+                html += `
+                    <div class="summary-item">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>${item.price}</span>
+                    </div>
+                `;
+            });
+
+            // Add delivery cost if applicable
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value;
+            if (deliveryMethod === 'delivery') {
+                html += `
+                    <div class="summary-item">
+                        <span>דמי משלוח</span>
+                        <span>₪30</span>
+                    </div>
+                `;
+            }
+
+            // Add total
+            const total = CartService.getCartTotal() + (deliveryMethod === 'delivery' ? 30 : 0);
+            html += `
+                <div class="summary-item summary-total">
+                    <span>סה"כ לתשלום</span>
+                    <span>₪${total.toLocaleString()}</span>
+                </div>
+            `;
+
+            summaryContainer.innerHTML = html;
+        }
+
+        // Handle delivery address toggle
+        window.toggleDeliveryAddress = function(show) {
+            const addressDiv = document.getElementById('delivery-address');
+            const addressInputs = addressDiv.querySelectorAll('input');
+
+            if (show) {
+                addressDiv.classList.remove('hidden');
+                addressInputs.forEach(input => input.required = true);
+            } else {
+                addressDiv.classList.add('hidden');
+                addressInputs.forEach(input => input.required = false);
+            }
+
+            updateOrderSummary();
+        };
+
+        // Handle form submission
+        window.handleSubmit = function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const orderData = {
+                personalDetails: {
+                    fullName: formData.get('fullName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone')
+                },
+                deliveryMethod: formData.get('deliveryMethod'),
+                paymentMethod: formData.get('paymentMethod'),
+                items: CartService.getCart()
+            };
+
+            if (formData.get('deliveryMethod') === 'delivery') {
+                orderData.deliveryAddress = {
+                    street: formData.get('street'),
+                    city: formData.get('city'),
+                    zipCode: formData.get('zipCode')
+                };
+            }
+
+            console.log('Order submitted:', orderData);
+            // Here you would typically send this data to your backend
+
+            console.log('Order submitted:', orderData);
+            // Here you would typically send this data to your backend
+
+            // Construct URL with order details
+            const params = new URLSearchParams({
+                name: formData.get('fullName'),
+                email: formData.get('email'),
+                deliveryMethod: formData.get('deliveryMethod'),
+                paymentMethod: formData.get('paymentMethod')
+            });
+
+            CartService.clearCart();
+            window.location.href = `thank-you.html`;
+        };
+    </script>
+</body>
+</html>

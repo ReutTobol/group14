@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppleSpot - צור קשר</title>
+    <link rel="stylesheet" href="/group14/part2/css/style.css">
+    <link rel="stylesheet" href="/group14/part2/css/contact.css">
+</head>
+<body class="contact-page">
+    <div id="header-component"></div>
+
+    <main class="contact-container">
+        <div class="contact-form">
+            <h2 class="form-title">צור איתנו קשר</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">שם</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">מספר טלפון</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">דואר אלקטרוני</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">הערות</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="send-btn">שלח</button>
+            </form>
+            <div class="additional-contact">
+                <h3>צור איתנו קשר גם כאן</h3>
+                <div class="social-links">
+                    <a href="tel:" class="phone-link">
+                        <img src="/group14/part2/img/phone-icon.png" alt="Phone">
+                    </a>
+                    <a href="https://wa.me/" class="whatsapp-link">
+                        <img src="/group14/part2/img/whatsapp-icon.png" alt="WhatsApp">
+                    </a>
+                    <a href="https://instagram.com/apple" class="instagram-link">
+                        <img src="/group14/part2/img/instagram-icon.png" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/group14/part2/js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Load the header component first
+            await loadComponent('header-component', '/group14/part2/components/header.html');
+
+            // Form submission handler
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('טופס נשלח בהצלחה!');
+            });
+        });
+    </script>
+</body>
+</html>

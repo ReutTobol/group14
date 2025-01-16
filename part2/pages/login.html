@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppleSpot - התחברות</title>
+    <link rel="stylesheet" href="/group14/part2/css/login.css">
+    <link rel="stylesheet" href="/group14/part2/css/header.css">
+</head>
+<body>
+    <div id="header-component"></div>
+
+    <main class="login-container">
+        <div class="login-form">
+            <h2 class="form-title">התחברות</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">דואר אלקטרוני</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">סיסמא</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">כניסה לחשבון</button>
+            </form>
+            <div class="google-login">
+                <button type="button" class="google-btn">
+                    Google כניסה באמצעות
+                </button>
+            </div>
+            <div class="register-link">
+                <a href="register.html">עדיין אין לך חשבון? לחץ כאן להרשמה</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/group14/part2/js/components.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('header-component', '/group14/part2/components/header.html');
+        });
+    </script>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Basic validation
+            if (!email || !password) {
+                alert('נא למלא את כל השדות');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                alert('נא להזין כתובת אימייל תקינה');
+                return;
+            }
+
+            // Here you would typically make an API call to your backend
+            console.log('Login attempt:', { email, password });
+        });
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+    </script>
+</body>
+</html>
