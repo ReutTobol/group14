@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppleSpot - Product Details</title>
 
-    <link rel="stylesheet" href="/group14/part2/css/header.css">
-    <link rel="stylesheet" href="/group14/part2/css/product-page.css">
-    <link rel="stylesheet" href="/group14/part2/css/product-options.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/product-page.css">
+    <link rel="stylesheet" href="../css/product-options.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -56,11 +56,11 @@
         </div>
     </div>
 
-    <script type="module" src="/group14/part2/js/product-gallery.js"></script>
-    <script src="/group14/part2/js/components.js"></script>
+    <script type="module" src="../js/product-gallery.js"></script>
+    <script src="../js/components.js"></script>
     <script type="module">
-        import {getProductDetails, updateProductPage} from '/group14/part2/js/product-gallery.js';
-        import { CartService } from '/group14/part2/js/cart-service.js';
+        import {getProductDetails, updateProductPage} from '../js/product-gallery.js';
+        import { CartService } from '../js/cart-service.js';
 
         window.cartService = CartService;
         let currentProduct = null;

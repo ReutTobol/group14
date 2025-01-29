@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>AppleSpot - אישור הזמנה</title>
-    <link rel="stylesheet" href="/group14/part2/css/style.css">
-    <link rel="stylesheet" href="/group14/part2/css/thank-you.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/thank-you.css">
 </head>
 <body>
     <div id="header-component"></div>
@@ -50,10 +50,10 @@
         </div>
     </main>
 
-    <script src="/group14/part2/js/components.js"></script>
+    <script src="../js/components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadComponent('header-component', '/group14/part2/components/header.html');
+            await loadComponent('header-component', '../components/header.html');
 
             const urlParams = new URLSearchParams(window.location.search);
 

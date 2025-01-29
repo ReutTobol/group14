@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>AppleSpot - Products</title>
-    <link rel="stylesheet" href="/group14/part2/css/style.css">
-    <link rel="stylesheet" href="/group14/part2/css/product-gallery.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-gallery.css">
 </head>
 <body>
     <div id="header-component"></div>
     <h1 class="page-title" id="categoryTitle"></h1>
     <div class="product-grid" id="productGrid"></div>
 
-    <script src="/group14/part2/js/components.js"></script>
+    <script src="../js/components.js"></script>
 
     <script type="module">
-        import { displayProducts } from '/group14/part2/js/product-gallery.js';
+        import { displayProducts } from '../js/product-gallery.js';
         
         const categoryTitles = {
             'mac': 'מחשבי מק',
@@ -25,7 +25,7 @@
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadComponent('header-component', '/group14/part2/components/header.html');
+            await loadComponent('header-component', '../components/header.html');
             
             // Get category from URL parameter
             const urlParams = new URLSearchParams(window.location.search);

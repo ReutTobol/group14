@@ -1,12 +1,25 @@
-async function loadComponent(elementId, componentPath, basePath = '') {
+async function loadComponent(elementId, componentPath) {
     try {
         const response = await fetch(componentPath);
         let html = await response.text();
-
-        html = html.replace(/{{group14}}/g, basePath);
-
+        
+        // Check if we're in the pages directory
+        const isInPagesDir = window.location.pathname.includes('/pages/');
+        const prefix = isInPagesDir ? '..' : '.';
+        
+        // Replace image and link paths based on current location
+        if (isInPagesDir) {
+            // In pages directory
+            html = html.replace(/href="([^"]*)\.html/g, 'href="$1.html');
+        } else {
+            // In root directory
+            html = html.replace(/href="([^"]*)\.html/g, 'href="pages/$1.html');
+        }
+        
+        // Replace the prefix placeholder for images
+        html = html.replace(/\{\{prefix\}\}/g, prefix);
+        
         document.getElementById(elementId).innerHTML = html;
-
         initializeHeaderEvents();
     } catch (error) {
         console.error('Error loading component:', error);
