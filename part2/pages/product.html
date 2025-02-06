@@ -55,11 +55,10 @@
             </div>
         </div>
     </div>
-
     <script type="module" src="../js/product-gallery.js"></script>
-    <script src="../js/components.js"></script>
+    <script type="module" src="../js/components.js"></script>
     <script type="module">
-        import {getProductDetails, updateProductPage} from '../js/product-gallery.js';
+        import { getProductDetails, updateProductPage } from '../js/product-gallery.js';
         import { CartService } from '../js/cart-service.js';
 
         window.cartService = CartService;
@@ -67,7 +66,7 @@
 
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                await loadComponent('header-component', '/group14/part2/components/header.html');
+                window.loadHeader();
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const category = urlParams.get('category') || 'mac';

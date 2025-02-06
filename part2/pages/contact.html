@@ -32,6 +32,7 @@
                 </div>
                 <button type="submit" class="send-btn">שלח</button>
             </form>
+            <div id="form-message" class="form-message"></div>
             <div class="additional-contact">
                 <h3>צור איתנו קשר גם כאן</h3>
                 <div class="social-links">
@@ -51,13 +52,41 @@
 
     <script src="../js/components.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            await loadComponent('header-component', '../components/header.html');
+        const API_BASE_URL = 'http://localhost:5000';
 
-            // Form submission handler
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadHeader();
+
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
-                alert('טופס נשלח בהצלחה!');
+                
+                const formData = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    message: document.getElementById('message').value
+                };
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/contact`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        document.getElementById('form-message').innerHTML = 
+                            '<div class="success-message">הטופס נשלח בהצלחה!</div>';
+                        document.getElementById('contactForm').reset();
+                    } else {
+                        throw new Error('שגיאה בשליחת הטופס');
+                    }
+                } catch (error) {
+                    document.getElementById('form-message').innerHTML = 
+                        `<div class="error-message">שגיאה בשליחת הטופס: ${error.message}</div>`;
+                }
             });
         });
     </script>

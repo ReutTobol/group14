@@ -21,24 +21,11 @@
 
             <div class="order-details">
                 <h2>פרטי ההזמנה</h2>
-                <div class="details-grid">
-                    <div class="detail-item">
-                        <span class="label">שם</span>
-                        <span class="value" id="customer-name"></span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">אימייל</span>
-                        <span class="value" id="customer-email"></span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">סוג משלוח</span>
-                        <span class="value" id="delivery-method"></span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">אמצעי תשלום</span>
-                        <span class="value" id="payment-method"></span>
-                    </div>
-                </div>
+                <p>מספר הזמנה: <span id="order-number"></span></p>
+                <p>שם: <span id="customer-name"></span></p>
+                <p>אימייל: <span id="customer-email"></span></p>
+                <p>שיטת משלוח: <span id="delivery-method"></span></p>
+                <p>אמצעי תשלום: <span id="payment-method"></span></p>
             </div>
 
             <div class="next-steps">
@@ -53,24 +40,25 @@
     <script src="../js/components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadComponent('header-component', '../components/header.html');
+            window.loadHeader();
 
             const urlParams = new URLSearchParams(window.location.search);
-
+            
+            document.getElementById('order-number').textContent = urlParams.get('orderNumber') || '';
             document.getElementById('customer-name').textContent = urlParams.get('name') || '';
             document.getElementById('customer-email').textContent = urlParams.get('email') || '';
-            document.getElementById('delivery-method').textContent =
+            document.getElementById('delivery-method').textContent = 
                 urlParams.get('deliveryMethod') === 'delivery' ? 'משלוח עד הבית' : 'איסוף עצמי';
             document.getElementById('payment-method').textContent = getPaymentMethodText(urlParams.get('paymentMethod'));
         });
 
         function getPaymentMethodText(method) {
-            switch(method) {
-                case 'bit': return 'Bit';
-                case 'cash': return 'מזומן';
-                case 'wire': return 'העברה בנקאית';
-                default: return '';
-            }
+            const methods = {
+                'bit': 'Bit',
+                'cash': 'מזומן',
+                'wire': 'העברה בנקאית'
+            };
+            return methods[method] || method;
         }
     </script>
 </body>

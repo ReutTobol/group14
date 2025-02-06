@@ -1,3 +1,4 @@
+// Function to load a component
 async function loadComponent(elementId, componentPath) {
     try {
         const response = await fetch(componentPath);
@@ -26,7 +27,7 @@ async function loadComponent(elementId, componentPath) {
     }
 }
 
-
+// Function to initialize header events
 function initializeHeaderEvents() {
     // Existing menu button functionality
     const menuButton = document.querySelector('.menu-button');
@@ -52,3 +53,41 @@ function initializeHeaderEvents() {
         }
     });
 }
+
+// Function to load header component
+async function loadHeader() {
+    try {
+        const response = await fetch('../components/header.html');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const content = await response.text();
+        const headerComponent = document.getElementById('header-component');
+        if (headerComponent) {
+            headerComponent.innerHTML = content;
+        } else {
+            console.error('Header component element not found');
+        }
+    } catch (error) {
+        console.error('Error loading header:', error);
+        const headerComponent = document.getElementById('header-component');
+        if (headerComponent) {
+            headerComponent.innerHTML = `
+                <div class="error-message">
+                    <p>שגיאה בטעינת התפריט</p>
+                </div>
+            `;
+        }
+    }
+}
+
+// Initialize if this script is loaded directly
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadHeader);
+} else {
+    loadHeader();
+}
+
+window.loadComponent = loadComponent;
+window.initializeHeaderEvents = initializeHeaderEvents; 
+window.loadHeader = loadHeader;
