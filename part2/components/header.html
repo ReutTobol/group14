@@ -1,7 +1,6 @@
 <header class="header">
     <nav class="nav-container">
-        <button class="menu-button">☰</button>
-        <div class="logo">AppleSpot</div>
+        <div class="logo" style="cursor: pointer;">AppleSpot</div>
         <div class="search-container">
             <input type="text" class="search-bar" placeholder="חיפוש מוצר...">
         </div>
@@ -12,15 +11,23 @@
             <li><a href="products.html?category=watch">Watch</a></li>
             <li><a href="products.html?category=accessories">אביזרים</a></li>
             <li><a href="contact.html">צור קשר</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li class="auth-section">
+                <div class="auth-links">
+                    <a href="login.html" class="login-link">התחברות</a>
+                </div>
+                <div class="user-menu hidden">
+                    <img src="{{prefix}}/img/person.jpg" alt="User" class="user-icon" width="25" height="25">
+                    <div class="dropdown-content">
+                        <span class="user-name"></span>
+                        <button class="logout-btn">התנתק</button>
+                    </div>
+                </div>
+            </li>
             <li>
                 <a href="cart.html" class="cart-indicator">
-                    <img src="img/cart.jpg" alt="Cart" width="24" height="24">
+                    <img src="{{prefix}}/img/cart.jpg" alt="Cart" width="24" height="24">
                 </a>
             </li>
         </ul>
-        <div class="auth-reseller">
-            <img src="img/logo.jpg" alt="Apple Authorized Reseller">
-        </div>
     </nav>
 </header>

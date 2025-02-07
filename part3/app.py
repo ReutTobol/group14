@@ -5,8 +5,17 @@ from bson import ObjectId
 import os
 from datetime import datetime
 import bcrypt
+import secrets
 
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)  # Generates a secure random 32-character hex string
+
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Lax',
+)
+
 CORS(app, resources={
     r"/*": {
         "origins": ["http://localhost:8000"],  # Your frontend URL
@@ -202,6 +211,20 @@ def get_user():
             
     except Exception as e:
         print(f"Error getting user: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/logout', methods=['POST', 'OPTIONS'])
+def logout():
+    if request.method == 'OPTIONS':
+        return make_response('', 200)
+        
+    try:
+        session.clear()
+        response = make_response(jsonify({'success': True}))
+        response.delete_cookie('session')  # Clear the session cookie
+        return response
+    except Exception as e:
+        print(f"Error logging out: {e}")
         return jsonify({'error': str(e)}), 500
 
 def strip_amount(amount):
