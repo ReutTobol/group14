@@ -16,7 +16,9 @@
                     <a href="login.html" class="login-link">התחברות</a>
                 </div>
                 <div class="user-menu hidden">
-                    <img src="{{prefix}}/img/person.jpg" alt="User" class="user-icon" width="25" height="25">
+                    <div class="user-icon-wrapper">
+                        <img src="{{prefix}}/img/person.jpg" alt="User" class="user-icon" width="25" height="25">
+                    </div>
                     <div class="dropdown-content">
                         <span class="user-name"></span>
                         <button class="logout-btn">התנתק</button>
@@ -28,9 +30,9 @@
                     <img src="{{prefix}}/img/cart.jpg" alt="Cart" width="24" height="24">
                 </a>
             </li>
-            <li class="auth-reseller">
-                <img src="{{prefix}}/img/logo.jpg" alt="Apple Logo" width="24" height="24">
-            </li>
+            <a href="/" class="logo">
+                <img src="{{prefix}}/img/apple-logo.svg" alt="Apple Logo" width="24" height="24">
+            </a>
         </ul>
     </nav>
 </header>

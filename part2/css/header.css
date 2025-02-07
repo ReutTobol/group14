@@ -38,6 +38,7 @@ body {
 /* Search bar */
 .search-container {
     position: relative;
+    z-index: 1000;
 }
 
 .search-bar {
@@ -79,6 +80,13 @@ body {
     color: #0066cc;
 }
 
+.logo img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: none;
+}
+
 /* Navigation links */
 .nav-links {
     display: flex;
@@ -106,16 +114,17 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
-.auth-container {
-    position: relative;
+.user-icon-wrapper {
+    padding: 5px;
 }
 
 .user-icon {
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }
 
 .dropdown-content {
@@ -124,8 +133,8 @@ body {
     right: 0;
     background: white;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     padding: 10px;
     display: none;
     min-width: 150px;
@@ -150,7 +159,6 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
     transition: background-color 0.2s;
 }
 
@@ -297,28 +305,39 @@ body {
 }
 
 .search-results {
+    display: none;
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%;
     max-height: 400px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     z-index: 1000;
-    margin-top: 5px;
-    display: none;
+}
+
+.search-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: white;
+}
+
+.search-results-content {
+    padding: 10px 0;
 }
 
 .search-result-item {
-    display: flex;
-    padding: 10px;
+    display: block;
+    padding: 10px 15px;
     text-decoration: none;
     color: inherit;
-    border-bottom: 1px solid #eee;
-    align-items: center;
     transition: background-color 0.2s;
 }
 
@@ -326,25 +345,22 @@ body {
     background-color: #f5f5f5;
 }
 
-.search-result-item img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    margin-left: 10px;
-}
-
 .search-result-info {
-    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .search-result-name {
-    font-weight: 500;
-    margin-bottom: 4px;
+    font-size: 14px;
 }
 
-.search-result-price {
-    color: #666;
-    font-size: 14px;
+.close-search {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
 }
 
 .no-results {

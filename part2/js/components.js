@@ -97,6 +97,25 @@ async function initializeHeaderEvents() {
     }
 }
 
+async function setupUserMenu() {
+    const userMenu = document.querySelector('.user-menu');
+    if (!userMenu) return;
+
+    userMenu.addEventListener('click', (e) => {
+        const dropdown = userMenu.querySelector('.dropdown-content');
+        dropdown.classList.toggle('show');
+        e.stopPropagation();
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        const dropdown = userMenu.querySelector('.dropdown-content');
+        if (dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show');
+        }
+    });
+}
+
 async function loadHeader() {
     try {
         const path = window.location.pathname;
@@ -124,6 +143,7 @@ async function loadHeader() {
             
             await initializeHeaderEvents();
             initializeSearch();
+            setupUserMenu();
         };
 
         await initializeComponents();

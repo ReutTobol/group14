@@ -5,7 +5,7 @@ export function initializeSearch() {
     const searchBar = document.querySelector('.search-bar');
     if (!searchBar) return;
 
-    // Create results container
+    // Create results container with updated structure
     const resultsContainer = document.createElement('div');
     resultsContainer.className = 'search-results';
     resultsContainer.innerHTML = `
@@ -16,8 +16,10 @@ export function initializeSearch() {
         <div class="search-results-content"></div>
     `;
     
-    // Append to search container instead of body
-    searchBar.parentNode.appendChild(resultsContainer);
+    // Append to search container
+    const searchContainer = searchBar.parentNode;
+    searchContainer.style.position = 'relative'; // Ensure relative positioning
+    searchContainer.appendChild(resultsContainer);
 
     // Handle search input
     searchBar.addEventListener('input', (e) => {
