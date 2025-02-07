@@ -125,6 +125,63 @@ productData = {
                 "מסך Liquid Retina 15.3 אינץ'",
                 "MagSafe 3 לטעינה"
             ]
+        },
+        {
+            "id": 6,
+            "name": "MacBook Air 13",
+            "description": "M1, 8GB RAM, 256GB SSD",
+            "basePrice": "4,499",
+            "image": "MacBookAir13.jpg",
+            "fullDescription": """
+                MacBook Air M1 מציע ביצועים מעולים במחיר משתלם.
+                סוללה שמחזיקה עד 18 שעות של שימוש.
+                מושלם ללימודים, עבודה ושימוש יומיומי.
+            """,
+            "specs": [
+                "שבב Apple M1",
+                "8GB RAM מאוחד",
+                "256GB SSD",
+                "מסך Retina 13.3 אינץ'",
+                "עד 18 שעות סוללה"
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Mac mini",
+            "description": "M2 Pro, 16GB RAM, 512GB SSD",
+            "basePrice": "5,199",
+            "image": "MacMINI.webp",
+            "fullDescription": """
+                Mac mini עם שבב M2 Pro מספק עוצמה אדירה בגוף קטן.
+                אפשרויות חיבור מתקדמות כולל Thunderbolt 4.
+                פתרון נהדר למשרד הביתי או כתחנת עבודה מקצועית.
+            """,
+            "specs": [
+                "שבב M2 Pro",
+                "16GB RAM",
+                "512GB SSD",
+                "4 יציאות Thunderbolt 4",
+                "HDMI 2.0"
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Mac mini",
+            "description": "M2, 8GB RAM, 256GB SSD",
+            "basePrice": "2,999",
+            "image": "MacMINI2.jpeg",
+            "fullDescription": """
+                Mac mini עם שבב M2 מציע ביצועים מצוינים במחיר משתלם.
+                קטן בגודל אך גדול ביכולות.
+                מושלם כשדרוג למחשב שולחני או כשרת ביתי.
+            """,
+            "specs": [
+                "שבב Apple M2",
+                "8GB RAM",
+                "256GB SSD",
+                "2 יציאות Thunderbolt 4",
+                "HDMI 2.0"
+            ]
         }
     ],
     "ipad": [
@@ -147,19 +204,78 @@ productData = {
         },
         {
             "id": 2,
-            "name": "iPad Air",
-            "description": "Apple M1, 8GB RAM, Wi-Fi 6",
-            "basePrice": "2,999",
-            "image": "ipadAir.jpg",
+            "name": "iPad Pro 11″",
+            "description": "Apple M2, 8GB RAM, Wi-Fi",
+            "basePrice": "3,999",
+            "image": "ipadPro.jpg",
             "fullDescription": """
-                iPad Air מציע את הביצועים של M1 במארז דק וקל. מסך Liquid Retina מרהיב ותמיכה ב-Apple Pencil דור 2. מושלם ליצירה, עבודה ובידור.
+                iPad Pro 11″ עם שבב M2 מציע ביצועים חזקים בגודל קומפקטי יותר. 
+                מסך Liquid Retina עם ProMotion לתצוגה חלקה ומהירה.
+                מושלם למקצוענים שמחפשים ניידות מקסימלית.
             """,
             "specs": [
-                "שבב Apple M1",
+                "שבב Apple M2",
                 "8GB RAM",
                 "מסך Liquid Retina",
                 "תמיכה ב-Apple Pencil דור 2",
-                "Wi-Fi 6"
+                "Wi-Fi 6E"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "iPad Air",
+            "description": "Apple M1, 8GB RAM, Wi-Fi",
+            "basePrice": "2,699",
+            "image": "ipadAIR.jpeg",
+            "fullDescription": """
+                iPad Air עם שבב M1 מספק ביצועים מעולים במארז דק ואלגנטי.
+                מסך Liquid Retina 10.9 אינץ' עם צבעים מדויקים.              
+                אידיאלי לעבודה, לימודים ויצירה דיגיטלית.
+            """,
+            "specs": [
+                "שבב Apple M1",
+                "אחסון 64GB (אפשרות ל-256GB)",
+                "Wi-Fi 6",
+                "מסך Liquid Retina",
+                "תמיכה ב-Apple Pencil דור 2"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "iPad",
+            "description": "Apple A14 Bionic, Wi-Fi",
+            "basePrice": "2,099",
+            "image": "ipad.png",
+            "fullDescription": """
+                iPad דור 10 מציע חוויית משתמש מעולה במחיר משתלם.
+                מסך Liquid Retina 10.9 אינץ' עם עיצוב מודרני.
+                מושלם למשפחות, סטודנטים ושימוש יומיומי.
+            """,
+            "specs": [
+                "שבב A14 Bionic",
+                "אחסון 64GB (אפשרות ל-256GB)",
+                "Wi-Fi 6",
+                "מסך Liquid Retina",
+                "תמיכה ב-Apple Pencil דור 1"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "iPad mini",
+            "description": "Apple A15 Bionic, Wi-Fi",
+            "basePrice": "2,299",
+            "image": "ipadMINI.jpeg",
+            "fullDescription": """
+                iPad mini מציע עוצמה מקסימלית בגודל מינימלי.
+                מסך Liquid Retina 8.3 אינץ' בעיצוב קומפקטי.                         
+                אידיאלי לניידות מקסימלית וקריאה נוחה.
+            """,
+            "specs": [
+                "שבב A15 Bionic",
+                "אחסון 64GB (אפשרות ל-256GB)",
+                "Wi-Fi 6",
+                "מסך Liquid Retina",
+                "תמיכה ב-Apple Pencil דור 2"
             ]
         }
     ],
@@ -188,7 +304,7 @@ productData = {
             "basePrice": "5,499",
             "image": "iphone15pro.png",
             "fullDescription": """
-                iPhone 15 Pro מביא את כל היתרונות של סדרת Pro בגודל קומפקטי יותר. שבב A17 Pro, מצלמה משולשת ועיצוב טיטניום.
+                iPhone 15 Pro מביא את כל היתרונות של סדרת Pro בגוף קטן וקומפקטי יותר. שבב A17 Pro, מצלמה משולשת ועיצוב טיטניום.
             """,
             "specs": [
                 "שבב A17 Pro",
@@ -197,41 +313,234 @@ productData = {
                 "טיטניום חלל",
                 "USB-C"
             ]
+        },
+        {
+            "id": 3,
+            "name": "iPhone 15 Plus",
+            "description": "A16 Bionic, 128GB",
+            "basePrice": "4,399",
+            "image": "iphone15PLUS.jpeg",
+            "fullDescription": """
+                iPhone 15 Plus מציע מסך גדול של 6.7 אינץ' עם Dynamic Island.
+                מצלמה משודרגת של 48MP וסוללה חזקה במיוחד.
+                מושלם למי שמחפש מסך גדול וביצועים מעולים.
+            """,
+            "specs": [
+                "שבב A16 Bionic",
+                "128GB אחסון",
+                "מסך 6.7 אינץ' Super Retina XDR",
+                "מצלמה ראשית 48MP",
+                "Dynamic Island"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "iPhone 15",
+            "description": "128GB",
+            "basePrice": "3,799",
+            "image": "iphone15.jpg",
+            "fullDescription": """
+                iPhone 15 משלב עיצוב מודרני עם ביצועים מעולים.
+                מסך 6.1 אינץ' חד ובהיר עם Dynamic Island.
+                מצלמה משודרגת של 48MP לצילום תמונות מרשימות וחיבור USB-C.
+            """,
+            "specs": [
+                "שבב A16 Bionic",
+                "128GB אחסון",
+                "מסך 6.1 אינץ' Super Retina XDR",
+                "מצלמה ראשית 48MP",
+                "Dynamic Island"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "iPhone 14 Plus",
+            "description": "128GB",
+            "basePrice": "3,599",
+            "image": "iphone14plus.png",
+            "fullDescription": """
+                iPhone 14 Plus מציע מסך גדול של 6.7 אינץ' וסוללה חזקה במיוחד.
+                ביצועים מעולים עם שבב A15 Bionic.
+                מושלם למי שמחפש מסך גדול במחיר משתלם עם חיי סוללה ארוכים.
+            """,
+            "specs": [
+                "שבב A15 Bionic",
+                "128GB אחסון",
+                "מסך 6.7 אינץ' Super Retina XDR",
+                "מצלמה כפולה 12MP",
+                "סוללה ליום שלם+"
+            ]
+        },
+        {
+            "id": 6,
+            "name": "iPhone 14",
+            "description": "128GB",
+            "basePrice": "3,199",
+            "image": "iphone14.jpg",
+            "fullDescription": """
+                iPhone 14 מציע ביצועים מעולים במחיר משתלם.
+                מסך 6.1 אינץ' Super Retina XDR איכותי.
+                מערך מצלמות כפול לצילום תמונות וסרטונים מרשימים.
+            """,
+            "specs": [
+                "שבב A15 Bionic",
+                "128GB אחסון",
+                "מסך 6.1 אינץ' Super Retina XDR",
+                "מצלמה כפולה 12MP",
+                "תמיכה ב-5G"
+            ]
+        },
+        {
+            "id": 7,
+            "name": "iPhone 13",
+            "description": "128GB",
+            "basePrice": "2,999",
+            "image": "iphone13.webp",
+            "fullDescription": """
+                iPhone 13 מציע ערך מצוין עם שבב A15 Bionic החזק.
+                מסך 6.1 אינץ' Super Retina XDR איכותי.
+                מערך מצלמות כפול משופר לצילום יום ולילה מרשימים.
+            """,
+            "specs": [
+                "שבב A15 Bionic",
+                "128GB אחסון",
+                "מסך 6.1 אינץ' Super Retina XDR",
+                "מצלמה כפולה 12MP",
+                "תמיכה ב-5G"
+            ]
+        },
+        {
+            "id": 8,
+            "name": "iPhone 13 mini",
+            "description": "128GB",
+            "basePrice": "2,699",
+            "image": "iphone13MINI.jpg",
+            "fullDescription": """
+                iPhone 13 mini מציע את כל היתרונות של iPhone 13 בגוף קטן וקומפקטי.
+                מסך 5.4 אינץ' Super Retina XDR.
+                אידיאלי למי שמחפש סמארטפון קטן וחזק.
+            """,
+            "specs": [
+                "שבב A15 Bionic",
+                "128GB אחסון",
+                "מסך 5.4 אינץ' Super Retina XDR",
+                "מצלמה כפולה 12MP",
+                "תמיכה ב-5G"
+            ]
         }
     ],
-    "watch": [
+        "watch": [
         {
             "id": 1,
             "name": "Apple Watch Ultra 2",
-            "description": "49mm, טיטניום",
+            "description": "49mm, GPS + Cellular",
             "basePrice": "3,999",
-            "image": "watchUltra2.jpg",
+            "image": "applewatchultra2.jpg",
             "fullDescription": """
-                Apple Watch Ultra 2 מציע את החוויה המתקדמת ביותר לספורטאים ומטיילים. מסך בהיר במיוחד, GPS מדויק וסוללה חזקה.
+                Apple Watch Ultra 2 מציע את חווית השעון החכם המתקדמת ביותר.
+                מסך בהיר במיוחד, גוף טיטניום עמיד וסוללה חזקה.
+                מושלם לספורטאים ולמשתמשים מקצועיים.
             """,
             "specs": [
-                "מסך 49mm Always-On",
-                "מבנה טיטניום",
-                "GPS דו-תדרי",
-                "עמידות למים 100m",
+                "מסך Retina תמידי עד 3000 nits",
+                "שבב S9 מתקדם",
+                "GPS + Cellular מובנה",
                 "סוללה עד 36 שעות"
             ]
         },
         {
             "id": 2,
             "name": "Apple Watch Series 9",
-            "description": "45mm, אלומיניום",
-            "basePrice": "2,199",
-            "image": "watchSeries9.jpg",
+            "description": "45mm, GPS",
+            "basePrice": "1,999",
+            "image": "applewatchs9.png",
             "fullDescription": """
-                Apple Watch Series 9 מציג שבב S9 חדש, מסך בהיר יותר ותכונות בריאות מתקדמות. מושלם למעקב אחר פעילות גופנית ובריאות.
+                Apple Watch Series 9 עם שבב S9 החדש מציע ביצועים משופרים.
+                מסך Retina תמידי בהיר, מעקב בריאות מתקדם.
+                תומך במחוות כפולות ובקרת דיוק חדשה.
             """,
             "specs": [
+                "מסך Retina תמידי",
                 "שבב S9",
-                "מסך Always-On",
-                "מעקב דופק מתקדם",
+                "מעקב דופק וECG",
                 "מדידת חמצן בדם",
-                "עמידות למים 50m"
+                "עמידות במים WR50"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Apple Watch Series 9",
+            "description": "41mm, GPS",
+            "basePrice": "1,799",
+            "image": "applewatchs9.png",
+            "fullDescription": """
+                Apple Watch Series 9 בגרסת 41mm מושלם לפרק יד קטן יותר.
+                כולל את כל התכונות המתקדמות של הסדרה עם שבב S9.
+                מעקב בריאות וכושר מקיף בעיצוב קומפקטי.
+            """,
+            "specs": [
+                "מסך Retina תמידי",
+                "שבב S9",
+                "מעקב דופק וECG",
+                "מדידת חמצן בדם",
+                "עמידות במים WR50"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Apple Watch SE",
+            "description": "44mm, GPS",
+            "basePrice": "1,249",
+            "image": "AppleWatchSE.jpg",
+            "fullDescription": """
+                Apple Watch SE מציע את התכונות החיוניות במחיר משתלם.
+                מעקב כושר ובריאות, התראות חכמות ועיצוב מודרני.
+                אידיאלי למי שנכנס לעולם השעונים החכמים.
+            """,
+            "specs": [
+                "מסך Retina",
+                "שבב S8",
+                "מעקב דופק",
+                "זיהוי נפילות",
+                "עמידות במים WR50"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Apple Watch SE",
+            "description": "40mm, GPS",
+            "basePrice": "1,099",
+            "image": "AppleWatchSE2.jpg",
+            "fullDescription": """
+                Apple Watch SE בגרסת 40mm מציע חווית שעון חכם במחיר נגיש.
+                כולל את כל התכונות החיוניות בגודל קומפקטי.
+                מושלם למעקב אחר פעילות יומיומית ובריאות.
+            """,
+            "specs": [
+                "מסך Retina",
+                "שבב S8",
+                "מעקב דופק",
+                "זיהוי נפילות",
+                "עמידות במים WR50"
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Apple Watch Series 9",
+            "description": "45mm, GPS + Cellular",
+            "basePrice": "3,299",
+            "image": "applewatchseries9.png",
+            "fullDescription": """
+                Apple Watch Series 9 בגרסת פלדת אל-חלד היוקרתית.
+                מסך ספיר קריסטל עמיד במיוחד, גימור יוקרתי.
+                כולל קישוריות סלולרית מובנית לחופש מלא מהטלפון.
+            """,
+            "specs": [
+                "גוף פלדת אל-חלד",
+                "מסך ספיר קריסטל",
+                "שבב S9",
+                "GPS + Cellular",
+                "מעקב בריאות מתקדם"
             ]
         }
     ],
@@ -241,16 +550,18 @@ productData = {
             "name": "AirPods Pro",
             "description": "דור 2 עם USB-C",
             "basePrice": "999",
-            "image": "airpodsPro.jpg",
+            "image": "airpodsPro.webp",
             "fullDescription": """
-                AirPods Pro דור 2 עם ביטול רעשים אקטיבי משופר ושמע מרחבי. חווית שמע פרימיום עם נוחות מרבית.
+                AirPods Pro דור 2 עם ביטול רעשים אקטיבי משופר.
+                שמע מרחבי מותאם אישית וטכנולוגיית Adaptive Audio.
+                כולל חיבור USB-C לטעינה מהירה ונוחה.
             """,
             "specs": [
                 "ביטול רעשים אקטיבי",
-                "שמע מרחבי",
+                "שמע מרחבי מותאם",
                 "חיבור USB-C",
-                "עמידות למים IPX4",
-                "סוללה עד 6 שעות"
+                "סוללה עד 6 שעות",
+                "עמידות למים IPX4"
             ]
         },
         {
@@ -260,7 +571,9 @@ productData = {
             "basePrice": "799",
             "image": "airpods.jpg",
             "fullDescription": """
-                AirPods דור 3 עם עיצוב מעודכן ושמע מרחבי. חיישני לחץ לשליטה קלה ונוחה. עמידות למים ולזיעה לשימוש ספורטיבי.
+                AirPods דור 3 עם עיצוב מעודכן ושמע מרחבי.
+                חיישני לחץ לשליטה קלה ונוחה.
+                עמידות למים ולזיעה לשימוש ספורטיבי.
             """,
             "specs": [
                 "שמע מרחבי",
@@ -277,7 +590,9 @@ productData = {
             "basePrice": "2,199",
             "image": "airpodsMax.jpg",
             "fullDescription": """
-                AirPods Max מציעות חווית שמע פרימיום ברמה הגבוהה ביותר. ביטול רעשים אקטיבי מתקדם ושמע מרחבי דינמי.
+                AirPods Max מציעות חווית שמע פרימיום ברמה הגבוהה ביותר.
+                ביטול רעשים אקטיבי מתקדם ושמע מרחבי דינמי.
+                עיצוב יוקרתי עם חומרים איכותיים ונוחות מרבית.
             """,
             "specs": [
                 "ביטול רעשים אקטיבי",
@@ -294,7 +609,9 @@ productData = {
             "basePrice": "599",
             "image": "magickeyboard.png",
             "fullDescription": """
-                Magic Keyboard עם משטח מגע מובנה לחוויית הקלדה מושלמת. עיצוב דק ונוח עם מקשים מוארים.
+                Magic Keyboard עם משטח מגע מובנה לחוויית הקלדה מושלמת.
+                עיצוב דק ונוח עם מקשים מוארים.
+                סוללה נטענת המחזיקה עד חודש של שימוש.
             """,
             "specs": [
                 "מקשים מוארים",
@@ -311,7 +628,9 @@ productData = {
             "basePrice": "599",
             "image": "applepencil.webp",
             "fullDescription": """
-                Apple Pencil דור 2 מציע דיוק מושלם ותגובה מיידית. טעינה אלחוטית מגנטית נוחה.
+                Apple Pencil דור 2 מציע דיוק מושלם ותגובה מיידית.
+                טעינה אלחוטית מגנטית נוחה.
+                מושלם לציור, רישום הערות ועריכה מדויקת.
             """,
             "specs": [
                 "רגישות ללחיצה",
@@ -328,7 +647,9 @@ productData = {
             "basePrice": "199",
             "image": "magSafe.png",
             "fullDescription": """
-                MagSafe Charger מספק טעינה אלחוטית מהירה ונוחה. חיבור מגנטי מדויק לטעינה אופטימלית.
+                MagSafe Charger מספק טעינה אלחוטית מהירה ונוחה.
+                חיבור מגנטי מדויק לטעינה אופטימלית.
+                תואם לכל מכשירי iPhone 12 ומעלה.
             """,
             "specs": [
                 "טעינה אלחוטית עד 15W",
@@ -345,7 +666,9 @@ productData = {
             "basePrice": "349",
             "image": "MagicMouse.jpg",
             "fullDescription": """
-                Magic Mouse עם משטח רב-מגע לשליטה אינטואיטיבית. עיצוב ארגונומי ותנועה חלקה על כל משטח.
+                Magic Mouse עם משטח רב-מגע לשליטה אינטואיטיבית.
+                עיצוב ארגונומי ותנועה חלקה על כל משטח.
+                סוללה נטענת המחזיקה עד חודש של שימוש.
             """,
             "specs": [
                 "משטח רב-מגע",
@@ -362,7 +685,9 @@ productData = {
             "basePrice": "139",
             "image": "airtag.jpeg",
             "fullDescription": """
-                AirTag מאפשר מעקב מדויק אחר חפצים חשובים. משתלב עם אפליקציית 'איתור' לאיתור קל ומהיר.
+                AirTag מאפשר מעקב מדויק אחר חפצים חשובים.
+                משתלב עם אפליקציית 'איתור' לאיתור קל ומהיר.
+                סוללה שמחזיקה כשנה ועמידות למים.
             """,
             "specs": [
                 "מעקב מדויק",

@@ -15,7 +15,8 @@
 
     <script type="module">
         import { displayProducts } from '../js/product-gallery.js';
-        
+        import { loadHeader } from '../js/components.js';
+
         const categoryTitles = {
             'mac': 'מחשבי מק',
             'ipad': 'אייפד',
@@ -25,7 +26,7 @@
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
-            window.loadHeader();
+            await loadHeader();
             
             // Get category from URL parameter
             const urlParams = new URLSearchParams(window.location.search);

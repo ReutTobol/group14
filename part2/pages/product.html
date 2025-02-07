@@ -60,13 +60,14 @@
     <script type="module">
         import { getProductDetails, updateProductPage } from '../js/product-gallery.js';
         import { CartService } from '../js/cart-service.js';
-
+        import { loadHeader } from '../js/components.js';
+        
         window.cartService = CartService;
         let currentProduct = null;
 
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                window.loadHeader();
+                await loadHeader()
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const category = urlParams.get('category') || 'mac';

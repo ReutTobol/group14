@@ -1,121 +1,139 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>AppleSpot - עגלת קניות</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/cart.css">
-</head>
-<body>
-<div id="header-component"></div>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
+  </head>
+  <body>
+    <div id="header-component"></div>
 
-<main class="cart-container">
-    <h1>עגלת קניות</h1>
-    <div id="cart-items" class="cart-items">
+    <main class="cart-container">
+      <h1>עגלת קניות</h1>
+      <div id="cart-items" class="cart-items">
         <!-- Cart items will be populated here -->
-    </div>
-    <div class="cart-summary">
+      </div>
+      <div class="cart-summary">
         <div class="cart-total">
-            <span>סה"כ:</span>
-            <span id="cart-total-amount">0</span>
+          <span>סה"כ:</span>
+          <span id="cart-total-amount">0</span>
         </div>
         <button id="checkout-btn" class="btn-primary">המשך לתשלום</button>
-    </div>
-</main>
+      </div>
+    </main>
 
-<script src="../js/components.js"></script>
-<script type="module">
-    import {CartService} from '../js/cart-service.js';
-
-    document.addEventListener('DOMContentLoaded', async () => {
-        window.loadHeader();
+    <script src="../js/components.js"></script>
+    <script type="module">
+      import { CartService } from "../js/cart-service.js";
+      import { loadHeader } from "../js/components.js";
+      document.addEventListener("DOMContentLoaded", async () => {
+        await loadHeader();
         renderCart();
         setupCheckoutButton();
-    });
+      });
 
-    function setupCheckoutButton() {
-        document.getElementById('checkout-btn').addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-    }
+      function setupCheckoutButton() {
+        document
+          .getElementById("checkout-btn")
+          .addEventListener("click", () => {
+            window.location.href = "checkout.html";
+          });
+      }
 
-    function renderCart() {
+      function renderCart() {
         const cartItems = CartService.getCart();
-        const cartContainer = document.getElementById('cart-items');
+        const cartContainer = document.getElementById("cart-items");
 
         if (cartItems.length === 0) {
-            cartContainer.innerHTML = '<p class="empty-cart">העגלה ריקה</p>';
-            return;
+          cartContainer.innerHTML = '<p class="empty-cart">העגלה ריקה</p>';
+          return;
         }
 
-        cartContainer.innerHTML = cartItems.map(item => `
+        cartContainer.innerHTML = cartItems
+          .map(
+            (item) => `
                 <div class="cart-item" data-id="${item.id}">
-                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <img src="http://localhost:5000/${item.image}" alt="${item.name}" class="cart-item-image">
                     <div class="cart-item-details">
                         <h3>${item.name}</h3>
                         <p class="cart-item-price">${item.price}</p>
                     </div>
                     <div class="quantity-selector">
-                        <button onclick="decrementQuantity(${item.id})">-</button>
+                        <button onclick="decrementQuantity(${
+                          item.id
+                        })">-</button>
                         <input type="number"
                                value="${item.quantity}"
                                min="1"
                                max="99"
                                onchange="updateQuantity(${item.id}, this.value)"
                                class="quantity-input">
-                        <button onclick="incrementQuantity(${item.id})">+</button>
+                        <button onclick="incrementQuantity(${
+                          item.id
+                        })">+</button>
                     </div>
                     <div class="cart-item-actions">
-    <button class="remove-item" onclick='removeFromCart(${JSON.stringify(item)})'>הסר</button>
+    <button class="remove-item" onclick='removeFromCart(${JSON.stringify(
+      item
+    )})'>הסר</button>
                     </div>
                 </div>
-            `).join('');
+            `
+          )
+          .join("");
 
         updateTotal();
-    }
+      }
 
-    function updateTotal() {
+      function updateTotal() {
         const total = CartService.getCartTotal();
-        document.getElementById('cart-total-amount').textContent = `₪${total.toLocaleString()}`;
-    }
+        document.getElementById(
+          "cart-total-amount"
+        ).textContent = `₪${total.toLocaleString()}`;
+      }
 
-    // Make functions globally available
-    window.incrementQuantity = function (productId) {
-        const input = document.querySelector(`.cart-item[data-id="${productId}"] .quantity-input`);
+      // Make functions globally available
+      window.incrementQuantity = function (productId) {
+        const input = document.querySelector(
+          `.cart-item[data-id="${productId}"] .quantity-input`
+        );
         const currentValue = parseInt(input.value);
         if (currentValue < 99) {
-            const newValue = currentValue + 1;
-            input.value = newValue;
-            CartService.updateQuantity(productId, newValue);
-            updateTotal();
+          const newValue = currentValue + 1;
+          input.value = newValue;
+          CartService.updateQuantity(productId, newValue);
+          updateTotal();
         }
-    };
+      };
 
-    window.decrementQuantity = function (productId) {
-        const input = document.querySelector(`.cart-item[data-id="${productId}"] .quantity-input`);
+      window.decrementQuantity = function (productId) {
+        const input = document.querySelector(
+          `.cart-item[data-id="${productId}"] .quantity-input`
+        );
         const currentValue = parseInt(input.value);
         if (currentValue > 1) {
-            const newValue = currentValue - 1;
-            input.value = newValue;
-            CartService.updateQuantity(productId, newValue);
-            updateTotal();
+          const newValue = currentValue - 1;
+          input.value = newValue;
+          CartService.updateQuantity(productId, newValue);
+          updateTotal();
         }
-    };
+      };
 
-    window.updateQuantity = function (productId, value) {
+      window.updateQuantity = function (productId, value) {
         let quantity = parseInt(value);
         if (isNaN(quantity) || quantity < 1) quantity = 1;
         if (quantity > 99) quantity = 99;
 
         CartService.updateQuantity(productId, quantity);
         renderCart(); // Re-render to ensure consistent state
-    };
+      };
 
-    window.removeFromCart = function (product) {
+      window.removeFromCart = function (product) {
         CartService.removeFromCart(product);
         renderCart();
         updateTotal();
-    };
-</script>
-</body>
+      };
+    </script>
+  </body>
 </html>
