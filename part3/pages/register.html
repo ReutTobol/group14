@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AppleSpot - הרשמה</title>
+    <link rel="stylesheet" href="/../css/register.css" />
+    <link rel="stylesheet" href="/../css/header.css" />
+  </head>
+  <body>
+    <div id="header-component"></div>
+
+    <main class="register-container">
+      <div class="register-form">
+        <h2 class="form-title">הרשמה</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="firstName">שם פרטי</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">שם משפחה</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+          <div class="form-group">
+            <label for="email">דואר אלקטרוני</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">סיסמא</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">מספר טלפון</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+          <div class="form-group">
+            <label for="address">כתובת</label>
+            <input type="text" id="address" name="address" required />
+          </div>
+          <div class="form-group">
+            <label for="zipCode">מיקוד</label>
+            <input type="text" id="zipCode" name="zipCode" required />
+          </div>
+          <div class="form-group">
+            <label for="shippingNotes">הערות משלוח</label>
+            <textarea id="shippingNotes" name="shippingNotes"></textarea>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" id="termsAccept" required />
+              אני מסכימ/ה לתנאי השימוש והפרטיות
+            </label>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" id="newsletter" />
+              הרשמה לרשימת דיוור (אופציונלי)
+            </label>
+          </div>
+          <button type="submit" class="register-btn">צור חשבון</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="/../js/components.js"></script>
+    <script type="module">
+      import { loadHeader } from "../js/components.js";
+      document.addEventListener("DOMContentLoaded", async () => {
+        await loadHeader();
+      });
+    </script>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const submitButton = document.querySelector(".register-btn");
+          submitButton.disabled = true;
+          submitButton.textContent = "מעבד רישום...";
+
+          try {
+            const formData = {
+              firstName: document.getElementById("firstName").value,
+              lastName: document.getElementById("lastName").value,
+              email: document.getElementById("email").value,
+              password: document.getElementById("password").value,
+              phone: document.getElementById("phone").value,
+              address: document.getElementById("address").value,
+              zipCode: document.getElementById("zipCode").value,
+              shippingNotes: document.getElementById("shippingNotes").value,
+              newsletter: document.getElementById("newsletter").checked,
+            };
+
+            // Basic validation
+            if (
+              !formData.firstName ||
+              !formData.lastName ||
+              !formData.email ||
+              !formData.password ||
+              !formData.phone ||
+              !formData.address ||
+              !formData.zipCode
+            ) {
+              throw new Error("נא למלא את כל השדות החובה");
+            }
+
+            const response = await fetch("http://localhost:5000/api/register", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+              credentials: "include",
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+              throw new Error(data.error || "שגיאה ברישום");
+            }
+
+            // Registration successful
+            alert("ההרשמה בוצעה בהצלחה!");
+            window.location.href = "login.html?registered=true";
+          } catch (error) {
+            alert(error.message);
+          } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "צור חשבון";
+          }
+        });
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function isValidPhone(phone) {
+        return /^[\d-+]{9,}$/.test(phone);
+      }
+    </script>
+  </body>
+</html>

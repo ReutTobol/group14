@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AppleSpot - התחברות</title>
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+  </head>
+  <body>
+    <div id="header-component"></div>
+
+    <main class="login-container">
+      <div class="login-form">
+        <h2 class="form-title">התחברות</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">דואר אלקטרוני</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">סיסמא</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit" class="login-btn">כניסה לחשבון</button>
+        </form>
+        <div class="google-login">
+          <button type="button" class="google-btn">Google כניסה באמצעות</button>
+        </div>
+        <div class="register-link">
+          <a href="register.html">עדיין אין לך חשבון? לחץ כאן להרשמה</a>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/components.js"></script>
+
+    <script type="module">
+        import { loadHeader } from '../js/components.js';
+        document.addEventListener("DOMContentLoaded", async () => {
+            await loadHeader()
+      });
+    </script>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const submitButton = document.querySelector(".login-btn");
+          submitButton.disabled = true;
+          submitButton.textContent = "מתחבר...";
+
+          try {
+            const loginData = {
+              email: document.getElementById("email").value,
+              password: document.getElementById("password").value,
+            };
+
+            const response = await fetch("http://localhost:5000/api/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(loginData),
+              credentials: "include",
+            });
+
+            if (!response.ok) {
+              throw new Error("שם משתמש או סיסמא שגויים");
+            }
+
+            const result = await response.json();
+            localStorage.setItem("user", JSON.stringify(result.user));
+            window.location.href = "/";
+          } catch (error) {
+            alert(error.message);
+          } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "כניסה לחשבון";
+          }
+        });
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+    </script>
+  </body>
+</html>

@@ -46,6 +46,13 @@ async function checkAuthState() {
       return false;
     }
 
+    // Hide login link if we're on the login page
+    const isLoginPage = window.location.pathname.includes("login.html");
+    if (isLoginPage) {
+      authLinks.style.display = "none";
+      return true;
+    }
+
     let user = JSON.parse(localStorage.getItem("user"));
 
     if (user) {
@@ -81,7 +88,7 @@ async function checkAuthState() {
 
 async function initializeHeaderEvents() {
   // Logo navigation
-  const logo = document.querySelector(".logo");
+  const logo = document.querySelector(".text-logo");
   if (logo) {
     logo.addEventListener("click", () => {
       const path = window.location.pathname;
@@ -97,6 +104,28 @@ async function initializeHeaderEvents() {
       }
     });
   }
+
+  // Add mobile menu button
+  const nav = document.querySelector(".nav-container");
+  const menuButton = document.createElement("button");
+  menuButton.className = "menu-button";
+  menuButton.innerHTML = "☰";
+  nav.appendChild(menuButton);
+
+  // Mobile menu toggle
+  const navLinks = document.querySelector(".nav-links");
+  menuButton.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    menuButton.innerHTML = navLinks.classList.contains("active") ? "✕" : "☰";
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target) && navLinks.classList.contains("active")) {
+      navLinks.classList.remove("active");
+      menuButton.innerHTML = "☰";
+    }
+  });
 }
 
 async function setupUserMenu() {

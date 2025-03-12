@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppleSpot - צור קשר</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact.css">
+</head>
+<body class="contact-page">
+    <div id="header-component"></div>
+
+    <main class="contact-container">
+        <div class="contact-form">
+            <h2 class="form-title">צור איתנו קשר</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">שם</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">מספר טלפון</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">דואר אלקטרוני</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">הערות</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="send-btn">שלח</button>
+            </form>
+            <div id="form-message" class="form-message"></div>
+            <div class="additional-contact">
+                <h3>צור איתנו קשר גם כאן</h3>
+                <div class="social-links">
+                    <a href="tel:" class="phone-link">
+                        <img src="../img/phone-icon.png" alt="Phone">
+                    </a>
+                    <a href="https://wa.me/" class="whatsapp-link">
+                        <img src="../img/whatsapp-icon.png" alt="WhatsApp">
+                    </a>
+                    <a href="https://instagram.com/apple" class="instagram-link">
+                        <img src="../img/instagram-icon.png" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/components.js"></script>
+    <script type="module">
+        import { loadHeader } from '../js/components.js';
+        
+        const API_BASE_URL = 'http://localhost:5000';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadHeader();
+
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    message: document.getElementById('message').value
+                };
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/contact`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        document.getElementById('form-message').innerHTML = 
+                            '<div class="success-message">הטופס נשלח בהצלחה!</div>';
+                        document.getElementById('contactForm').reset();
+                    } else {
+                        throw new Error('שגיאה בשליחת הטופס');
+                    }
+                } catch (error) {
+                    document.getElementById('form-message').innerHTML = 
+                        `<div class="error-message">שגיאה בשליחת הטופס: ${error.message}</div>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

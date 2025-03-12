@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>AppleSpot - אישור הזמנה</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/thank-you.css">
+</head>
+<body>
+    <div id="header-component"></div>
+
+    <main class="thank-you-container">
+        <div class="success-card">
+            <div class="success-header">
+                <div class="checkmark-circle">
+                    <div class="checkmark"></div>
+                </div>
+                <h1>תודה על הזמנתך!</h1>
+                <p class="subtitle">ההזמנה התקבלה בהצלחה</p>
+            </div>
+
+            <div class="order-details">
+                <h2>פרטי ההזמנה</h2>
+                <p>מספר הזמנה: <span id="order-number"></span></p>
+                <p>שם: <span id="customer-name"></span></p>
+                <p>אימייל: <span id="customer-email"></span></p>
+                <p>שיטת משלוח: <span id="delivery-method"></span></p>
+                <p>אמצעי תשלום: <span id="payment-method"></span></p>
+            </div>
+
+            <div class="next-steps">
+                <p>אנו נעדכן אותך בהמשך התהליך באמצעות המייל</p>
+                <div class="buttons">
+                    <a href="/index.html" class="button primary">חזרה לדף הבית</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/components.js"></script>
+    <script type="module">
+        import { loadHeader } from '../js/components.js';
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadHeader()
+
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            document.getElementById('order-number').textContent = urlParams.get('orderNumber') || '';
+            document.getElementById('customer-name').textContent = urlParams.get('name') || '';
+            document.getElementById('customer-email').textContent = urlParams.get('email') || '';
+            document.getElementById('delivery-method').textContent = 
+                urlParams.get('deliveryMethod') === 'delivery' ? 'משלוח עד הבית' : 'איסוף עצמי';
+            document.getElementById('payment-method').textContent = getPaymentMethodText(urlParams.get('paymentMethod'));
+        });
+
+        function getPaymentMethodText(method) {
+            const methods = {
+                'bit': 'Bit',
+                'cash': 'מזומן',
+                'wire': 'העברה בנקאית'
+            };
+            return methods[method] || method;
+        }
+    </script>
+</body>
+</html>

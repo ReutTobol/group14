@@ -1,0 +1,91 @@
+/* Product Options Styles */
+.options-container {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
+.option-group {
+    margin-bottom: 20px;
+}
+
+.option-group h3 {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.color-option:hover {
+    background-color: #f0f0f0;
+}
+
+.color-option.selected {
+    border-color: #0066cc;
+    background-color: #f0f0f0;
+}
+
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.storage-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.storage-option {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.storage-option:hover {
+    background-color: #f0f0f0;
+}
+
+.storage-option.selected {
+    border-color: #0066cc;
+    background-color: #f0f0f0;
+}
+
+.storage-size {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.storage-price {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.price-update {
+    transition: all 0.3s ease;
+}
