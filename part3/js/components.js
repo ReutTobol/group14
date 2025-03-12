@@ -36,6 +36,21 @@ async function loadComponent(elementId, componentPath) {
   }
 }
 
+function updateCartCount() {
+  const cartCount = document.querySelector(".cart-count");
+  if (!cartCount) return;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+
+  if (totalItems > 0) {
+    cartCount.textContent = totalItems;
+    cartCount.classList.remove("hidden");
+  } else {
+    cartCount.classList.add("hidden");
+  }
+}
+
 async function checkAuthState() {
   try {
     const authLinks = document.querySelector(".auth-links");
@@ -124,6 +139,16 @@ async function initializeHeaderEvents() {
     if (!nav.contains(e.target) && navLinks.classList.contains("active")) {
       navLinks.classList.remove("active");
       menuButton.innerHTML = "☰";
+    }
+  });
+
+  // Initialize cart count
+  updateCartCount();
+
+  // Listen for cart updates
+  window.addEventListener("storage", (e) => {
+    if (e.key === "cart") {
+      updateCartCount();
     }
   });
 }
