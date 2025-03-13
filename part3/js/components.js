@@ -36,6 +36,21 @@ async function loadComponent(elementId, componentPath) {
   }
 }
 
+function updateCartCount() {
+  const cartCount = document.querySelector(".cart-count");
+  if (!cartCount) return;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+
+  if (totalItems > 0) {
+    cartCount.textContent = totalItems;
+    cartCount.classList.remove("hidden");
+  } else {
+    cartCount.classList.add("hidden");
+  }
+}
+
 async function checkAuthState() {
   try {
     const authLinks = document.querySelector(".auth-links");
@@ -44,6 +59,13 @@ async function checkAuthState() {
     if (!authLinks || !userMenu) {
       console.warn("Auth elements not found, retrying...");
       return false;
+    }
+
+    // Hide login link if we're on the login page
+    const isLoginPage = window.location.pathname.includes("login.html");
+    if (isLoginPage) {
+      authLinks.style.display = "none";
+      return true;
     }
 
     let user = JSON.parse(localStorage.getItem("user"));
@@ -81,7 +103,7 @@ async function checkAuthState() {
 
 async function initializeHeaderEvents() {
   // Logo navigation
-  const logo = document.querySelector(".logo");
+  const logo = document.querySelector(".text-logo");
   if (logo) {
     logo.addEventListener("click", () => {
       const path = window.location.pathname;
@@ -97,6 +119,38 @@ async function initializeHeaderEvents() {
       }
     });
   }
+
+  // Add mobile menu button
+  const nav = document.querySelector(".nav-container");
+  const menuButton = document.createElement("button");
+  menuButton.className = "menu-button";
+  menuButton.innerHTML = "☰";
+  nav.appendChild(menuButton);
+
+  // Mobile menu toggle
+  const navLinks = document.querySelector(".nav-links");
+  menuButton.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    menuButton.innerHTML = navLinks.classList.contains("active") ? "✕" : "☰";
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target) && navLinks.classList.contains("active")) {
+      navLinks.classList.remove("active");
+      menuButton.innerHTML = "☰";
+    }
+  });
+
+  // Initialize cart count
+  updateCartCount();
+
+  // Listen for cart updates
+  window.addEventListener("storage", (e) => {
+    if (e.key === "cart") {
+      updateCartCount();
+    }
+  });
 }
 
 async function setupUserMenu() {

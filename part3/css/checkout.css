@@ -1,0 +1,126 @@
+.checkout-container {
+    max-width: 800px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+}
+
+.checkout-section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #1d1d1f;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8ed;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0071e3;
+}
+
+.delivery-options,
+.payment-options {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.option-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option-card:hover {
+    border-color: #0071e3;
+}
+
+.option-card.selected {
+    border-color: #0071e3;
+    background-color: rgba(0, 113, 227, 0.05);
+}
+
+.option-card input[type="radio"] {
+    margin-left: 10px;
+}
+
+.delivery-address {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e8e8ed;
+}
+
+.hidden {
+    display: none;
+}
+
+.order-summary {
+    margin-top: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e8ed;
+}
+
+.summary-total {
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #0071e3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #0077ed;
+}
+
+@media (max-width: 768px) {
+    .checkout-container {
+        margin-top: 80px;
+    }
+}
