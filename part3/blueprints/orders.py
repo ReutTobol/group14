@@ -1,11 +1,9 @@
 from flask import Blueprint, jsonify, request
 from datetime import datetime
-from pymongo import MongoClient
+from part3.utilities.db_connector import get_db_connection
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['applespot']
-
+db = get_db_connection()
 orders_bp = Blueprint('orders', __name__, url_prefix='/api')
 
 def strip_amount(amount):

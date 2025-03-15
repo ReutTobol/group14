@@ -2,11 +2,10 @@ from flask import Blueprint, jsonify, request, send_file
 from bson import ObjectId
 import os
 import re
-from pymongo import MongoClient
+from part3.utilities.db_connector import get_db_connection
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['applespot']
+db = get_db_connection()
 products = db['products']
 categories = db['categories']
 

@@ -2,11 +2,10 @@ from flask import Blueprint, jsonify, request, session, make_response
 from bson import ObjectId
 from datetime import datetime
 import bcrypt
-from pymongo import MongoClient
+from part3.utilities.db_connector import get_db_connection
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['applespot']
+db = get_db_connection()
 users = db['users']
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/api')
