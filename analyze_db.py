@@ -1,13 +1,10 @@
-from pymongo import MongoClient
 from bson import ObjectId
 from datetime import datetime
+from part3.utilities.db_connector import get_db_connection
 
 def analyze_db():
-    # Connect to MongoDB
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client['applespot']
-
     # Get all collections in the database
+    db = get_db_connection()
     collections = db.list_collection_names()
     
     print("Database Analysis Report")

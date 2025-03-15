@@ -1,15 +1,16 @@
 from flask import Flask, jsonify, make_response, send_from_directory, request
 from flask_cors import CORS
-from pymongo import MongoClient
 import os
 import secrets
 
 # Import blueprints
-from blueprints.main import main_bp
-from blueprints.products import products_bp
-from blueprints.auth import auth_bp
-from blueprints.orders import orders_bp
-from blueprints.contact import contact_bp
+from part3.blueprints.main import main_bp
+from part3.blueprints.products import products_bp
+from part3.blueprints.auth import auth_bp
+from part3.blueprints.orders import orders_bp
+from part3.blueprints.contact import contact_bp
+
+from part3.init_db import init_database
 
 app = Flask(__name__, static_folder=None)  # Disable default static folder
 app.secret_key = secrets.token_hex(16)  # Generates a secure random 32-character hex string
@@ -30,8 +31,7 @@ CORS(app, resources={
 })
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['applespot']
+init_database()
 
 IMG_FOLDER = os.path.join('uploads')
 app.config['IMG_FOLDER'] = IMG_FOLDER

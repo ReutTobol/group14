@@ -1,9 +1,9 @@
-from app import db
-from product_data import productData, defaultColors, defaultStorage
-import shutil
+from part3.utilities.db_connector import get_db_connection
+from part3.product_data import productData, defaultColors, defaultStorage
 import os
 
 def init_database():
+    db = get_db_connection()
     # Clear existing collections
     collections_to_clear = ['products', 'categories', 'contacts', 'orders', 'users']
     for collection in collections_to_clear:

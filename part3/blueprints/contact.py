@@ -1,10 +1,9 @@
 from flask import Blueprint, jsonify, request
 from datetime import datetime
-from pymongo import MongoClient
+from ..utilities.db_connector import get_db_connection
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['applespot']
+db = get_db_connection()
 contacts = db['contacts']
 
 contact_bp = Blueprint('contact', __name__, url_prefix='/api')
