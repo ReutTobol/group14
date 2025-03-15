@@ -1,6 +1,6 @@
 from bson import ObjectId
 from datetime import datetime
-from part3.utilities.db_connector import get_db_connection
+from part3.utilities.db_connector import get_db_connection, close_connection
 
 def analyze_db():
     # Get all collections in the database
@@ -76,7 +76,7 @@ def analyze_db():
                     print(f"  {status}: {count}")
 
     print("\n" + "=" * 50)
-    client.close()
+    close_connection()
 
 if __name__ == "__main__":
     try:

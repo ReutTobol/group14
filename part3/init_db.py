@@ -2,12 +2,13 @@ from part3.utilities.db_connector import get_db_connection
 from part3.product_data import productData, defaultColors, defaultStorage
 import os
 
-def init_database():
+def init_database(delete_existing=False):
     db = get_db_connection()
     # Clear existing collections
-    collections_to_clear = ['products', 'categories', 'contacts', 'orders', 'users']
-    for collection in collections_to_clear:
-        db[collection].delete_many({})
+    if delete_existing:
+        collections_to_clear = ['products', 'categories', 'contacts', 'orders', 'users']
+        for collection in collections_to_clear:
+            db[collection].delete_many({})
     
     # Create uploads directory if it doesn't exist
     upload_dir = 'uploads'
