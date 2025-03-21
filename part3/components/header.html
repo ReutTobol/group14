@@ -1,11 +1,9 @@
 <header class="header">
     <nav class="nav-container">
-        <!-- Apple logo on the right -->
         <a href="/" class="apple-logo">
             <img src="{{prefix}}/img/apple-logo.svg" alt="Apple Logo" width="24" height="24">
         </a>
         
-        <!-- Navigation links in the middle -->
         <ul class="nav-links">
             <li><a href="products.html?category=mac">Mac</a></li>
             <li><a href="products.html?category=ipad">iPad</a></li>
@@ -15,7 +13,6 @@
             <li><a href="contact.html">צור קשר</a></li>
         </ul>
 
-        <!-- User and cart section -->
         <div class="user-cart-section">
             <a href="cart.html" class="cart-indicator">
                 <img src="{{prefix}}/img/cart.jpg" alt="Cart" width="24" height="24">
@@ -31,17 +28,16 @@
                 <div class="dropdown-content">
                     <span class="user-name"></span>
                     <button class="edit-account-btn">עדכון פרטי חשבון</button>
+                    <button class="view-orders-btn">ההזמנות שלי</button>
                     <button class="logout-btn">התנתק</button>
                 </div>
             </div>
         </div>
 
-        <!-- AppleSpot text logo on the left -->
         <div class="text-logo">AppleSpot</div>
     </nav>
 </header>
 
-<!-- Add modal for account editing -->
 <div id="account-modal" class="modal hidden">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
@@ -79,5 +75,14 @@
             </div>
             <button type="submit" class="submit-btn">שמור שינויים</button>
         </form>
+    </div>
+</div>
+
+<div id="orders-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>ההזמנות שלי</h2>
+        <div id="orders-list">
+        </div>
     </div>
 </div>

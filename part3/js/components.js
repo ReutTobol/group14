@@ -257,6 +257,80 @@ async function setupUserMenu() {
       modal.classList.add('hidden');
     }
   });
+
+  const viewOrdersBtn = userMenu.querySelector(".view-orders-btn");
+  const ordersModal = document.getElementById("orders-modal");
+  const ordersCloseModal = ordersModal.querySelector(".close-modal");
+  const ordersList = document.getElementById("orders-list");
+
+  async function loadUserOrders() {
+    try {
+      const currentUser = JSON.parse(localStorage.getItem('user'));
+      if (!currentUser || !currentUser.email) {
+        alert('Please log in first');
+        return;
+      }
+
+      const response = await fetch(`/api/user-orders/${currentUser.email}`);
+      const orders = await response.json();
+
+      if (Array.isArray(orders)) {
+        ordersList.innerHTML = orders.map(order => `
+          <div class="order-item">
+            <span class="order-number">הזמנה מספר: ${order.order_number}</span>
+            <button class="cancel-order-btn" data-order-id="${order._id}">
+              ביטול הזמנה
+            </button>
+          </div>
+        `).join('') || '<p>לא נמצאו הזמנות</p>';
+
+        const cancelButtons = ordersList.querySelectorAll('.cancel-order-btn');
+        cancelButtons.forEach(button => {
+          button.addEventListener('click', async () => {
+            if (confirm('האם אתה בטוח שברצונך לבטל את ההזמנה?')) {
+              const orderId = button.dataset.orderId;
+              try {
+                const response = await fetch(`/api/orders/${orderId}`, {
+                  method: 'DELETE'
+                });
+
+                if (response.ok) {
+                  button.closest('.order-item').remove();
+                  if (!ordersList.children.length) {
+                    ordersList.innerHTML = '<p>לא נמצאו הזמנות</p>';
+                  }
+                  alert('ההזמנה בוטלה בהצלחה');
+                } else {
+                  alert('אירעה שגיאה בביטול ההזמנה');
+                }
+              } catch (error) {
+                console.error('Error canceling order:', error);
+                alert('אירעה שגיאה בביטול ההזמנה');
+              }
+            }
+          });
+        });
+      }
+    } catch (error) {
+      console.error('Error loading orders:', error);
+      ordersList.innerHTML = '<p>אירעה שגיאה בטעינת ההזמנות</p>';
+    }
+  }
+
+  viewOrdersBtn.addEventListener("click", async () => {
+    ordersModal.classList.remove('hidden');
+    await loadUserOrders();
+  });
+
+  ordersCloseModal.addEventListener("click", () => {
+    ordersModal.classList.add('hidden');
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === ordersModal) {
+      ordersModal.classList.add('hidden');
+    }
+  });
 }
 
 async function loadHeader() {
@@ -274,7 +348,6 @@ async function loadHeader() {
       return;
     }
 
-    // Initialize components with retry mechanism
     let retries = 0;
     const maxRetries = 3;
 
@@ -282,7 +355,7 @@ async function loadHeader() {
       const authInitialized = await checkAuthState();
       if (!authInitialized && retries < maxRetries) {
         retries++;
-        setTimeout(initializeComponents, 100 * retries); // Exponential backoff
+        setTimeout(initializeComponents, 100 * retries); 
         return;
       }
 

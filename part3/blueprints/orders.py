@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from datetime import datetime
 from part3.utilities.db_connector import get_db_connection
+from bson import ObjectId
 
 # MongoDB connection
 db = get_db_connection()
@@ -31,7 +32,6 @@ def create_order():
             'created_at': datetime.now()
         }
         
-        # Calculate final total including delivery
         order_doc['final_total'] = float(order_doc['total_amount']) + float(order_doc['delivery_cost'])
         result = db['orders'].insert_one(order_doc)
         return jsonify({
@@ -41,4 +41,33 @@ def create_order():
         }), 201
     except Exception as e:
         print(f"Error creating order: {e}")
+        return jsonify({'error': str(e)}), 500 
+
+@orders_bp.route('/orders/<order_id>', methods=['DELETE'])
+def delete_order(order_id):
+    try:
+        result = db['orders'].delete_one({'_id': ObjectId(order_id)})
+        
+        if result.deleted_count > 0:
+            return jsonify({'success': True}), 200
+        return jsonify({'error': 'Order not found'}), 404
+        
+    except Exception as e:
+        print(f"Error deleting order: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@orders_bp.route('/user-orders/<user_email>', methods=['GET'])
+def get_user_orders(user_email):
+    try:
+        orders = list(db['orders'].find(
+            {'personal_details.email': user_email},
+            {'order_number': 1, 'created_at': 1}
+        ).sort('created_at', -1))
+        
+        for order in orders:
+            order['_id'] = str(order['_id'])
+            
+        return jsonify(orders), 200
+    except Exception as e:
+        print(f"Error fetching user orders: {e}")
         return jsonify({'error': str(e)}), 500 
