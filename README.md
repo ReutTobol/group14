@@ -16,30 +16,15 @@ git clone <repository-url>
 cd group14
 ```
 
-2. Create and activate a virtual environment:
-```bash
-# On macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-
-# On Windows
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-3. Install required packages:
+2. Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Make sure MongoDB is running locally:
-```bash
-# Check if MongoDB is running
-mongod --version
-```
 
 ## Database Initialization
 
+Database initialization runs automatically on app run.
 If the database is not working or you need to reset it, follow these steps:
 
 1. Run the database initialization script:
@@ -57,6 +42,7 @@ This will:
 
 1. Start the Flask application:
 ```bash
+cd part3
 python app.py
 ```
 
@@ -100,28 +86,3 @@ group14/
 ├── static/           # Static files (CSS, JS, images)
 └── templates/        # HTML templates
 ```
-
-## Troubleshooting
-
-1. If MongoDB connection fails:
-   - Ensure MongoDB is running: `mongod`
-   - Check if MongoDB is running on the default port (27017)
-   - Verify MongoDB service status
-
-2. If database is empty or corrupted:
-   - Run `python init_db.py` to reset the database
-   - Check MongoDB logs for any errors
-
-3. If website doesn't load:
-   - Check if Flask server is running
-   - Verify console for any Python errors
-   - Ensure all requirements are installed
-
-## Additional Information
-
-- The website uses RTL (Right-to-Left) layout for Hebrew text
-- Authentication is handled via local MongoDB storage
-- Product images are served from the static directory
-- Cart data is stored in browser localStorage
-
-For any additional help or issues, please contact the development team. 
