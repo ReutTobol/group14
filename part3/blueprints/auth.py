@@ -81,6 +81,37 @@ def get_user():
         print(f"Error getting user: {e}")
         return jsonify({'error': str(e)}), 500
 
+@auth_bp.route('/user/<user_id>', methods=['PUT', 'OPTIONS'])
+def update_user(user_id):
+    if request.method == 'OPTIONS':
+        return make_response('', 200)
+        
+    try:
+        if not ObjectId.is_valid(user_id):
+            return jsonify({'error': 'Invalid user ID format'}), 400
+            
+        update_data = request.json
+        
+        protected_fields = ['_id', 'password', 'email', 'created_at']
+        update_fields = {k: v for k, v in update_data.items() if k not in protected_fields}
+        
+        result = users.update_one(
+            {'_id': ObjectId(user_id)},
+            {'$set': update_fields}
+        )
+        
+        if result.modified_count > 0:
+            updated_user = users.find_one({'_id': ObjectId(user_id)})
+            updated_user['_id'] = str(updated_user['_id'])
+            updated_user.pop('password', None)
+            return jsonify({'success': True, 'user': updated_user})
+        else:
+            return jsonify({'error': 'No changes made'}), 400
+            
+    except Exception as e:
+        print(f"Error updating user: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @auth_bp.route('/logout', methods=['POST', 'OPTIONS'])
 def logout():
     if request.method == 'OPTIONS':

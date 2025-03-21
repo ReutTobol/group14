@@ -52,37 +52,3 @@ def get_image(filename):
     except Exception as e:
         print(f"Error serving image: {e}")
         return jsonify({'error': str(e)}), 404
-
-@products_bp.route('/search')
-def search_products():
-    try:
-        query = request.args.get('q', '')
-        if len(query) < 2:
-            return jsonify([])
-
-        # Create case-insensitive regex pattern
-        pattern = re.compile(query, re.IGNORECASE)
-        
-        # Search across multiple fields
-        search_results = products.find({
-            '$or': [
-                {'name': {'$regex': pattern}},
-                {'description': {'$regex': pattern}},
-                {'category': {'$regex': pattern}}
-            ]
-        }).limit(10)
-
-        results = []
-        for product in search_results:
-            results.append({
-                'id': str(product['_id']),  # Convert ObjectId to string
-                'name': product['name'],
-                'price': product.get('basePrice', 0),  # Use basePrice instead of price
-                'image': f'/api/images/{product["image"]}',
-                'category': product['category']
-            })
-
-        return jsonify(results)
-    except Exception as e:
-        print(f"Search error: {e}")
-        return jsonify({'error': 'Search failed'}), 500 

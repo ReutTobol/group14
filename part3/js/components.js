@@ -128,14 +128,12 @@ async function initializeHeaderEvents() {
   menuButton.innerHTML = "☰";
   nav.appendChild(menuButton);
 
-  // Mobile menu toggle
   const navLinks = document.querySelector(".nav-links");
   menuButton.addEventListener("click", () => {
     navLinks.classList.toggle("active");
     menuButton.innerHTML = navLinks.classList.contains("active") ? "✕" : "☰";
   });
 
-  // Close mobile menu when clicking outside
   document.addEventListener("click", (e) => {
     if (!nav.contains(e.target) && navLinks.classList.contains("active")) {
       navLinks.classList.remove("active");
@@ -143,10 +141,8 @@ async function initializeHeaderEvents() {
     }
   });
 
-  // Initialize cart count
   updateCartCount();
 
-  // Listen for cart updates
   window.addEventListener("storage", (e) => {
     if (e.key === "cart") {
       updateCartCount();
@@ -164,11 +160,101 @@ async function setupUserMenu() {
     e.stopPropagation();
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", () => {
     const dropdown = userMenu.querySelector(".dropdown-content");
     if (dropdown.classList.contains("show")) {
       dropdown.classList.remove("show");
+    }
+  });
+
+  const editBtn = userMenu.querySelector(".edit-account-btn");
+  const modal = document.getElementById("account-modal");
+  const form = document.getElementById("update-account-form");
+
+
+  // Update the modal and form handling
+  editBtn.addEventListener("click", async () => {
+    // Just open the modal with empty form initially
+    modal.classList.remove('hidden');
+    
+    // Get current user data from localStorage for initial values
+    const currentUser = JSON.parse(localStorage.getItem('user')) || {};
+    
+    // Populate form with current data
+    form.firstName.value = currentUser.firstName || '';
+    form.lastName.value = currentUser.lastName || '';
+    form.phone.value = currentUser.phone || '';
+    form.address.value = currentUser.address || '';
+    form.zipCode.value = currentUser.zipCode || '';
+    form.shippingNotes.value = currentUser.shippingNotes || '';
+    form.newsletter.checked = currentUser.newsletter || false;
+  });
+
+  // Handle form submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Get current user from localStorage
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser._id) {
+      alert('Please log in first');
+      return;
+    }
+
+    const formData = {
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      phone: form.phone.value,
+      address: form.address.value,
+      zipCode: form.zipCode.value,
+      shippingNotes: form.shippingNotes.value,
+      newsletter: form.newsletter.checked
+    };
+
+    try {
+      const response = await fetch(`/api/user/${currentUser._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          // Update displayed user name
+          const userName = userMenu.querySelector(".user-name");
+          if (userName) {
+            userName.textContent = `${formData.firstName} ${formData.lastName}`;
+          }
+          modal.classList.add('hidden');
+          alert('הפרטים עודכנו בהצלחה!');
+          
+          // Update local storage with new user data
+          const updatedUser = { ...currentUser, ...formData };
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+        }
+      } else {
+        // Show verification message for any error
+        alert('התקשר לעסק על מנת לוודא את פרטיך');
+      }
+    } catch (error) {
+      console.error('Error updating account:', error);
+      alert('התקשר לעסק על מנת לוודא את פרטיך');
+    }
+  });
+
+  // Add modal close button handler
+  const closeModal = modal.querySelector(".close-modal");
+  closeModal.addEventListener("click", () => {
+    modal.classList.add('hidden');
+  });
+
+  // Close modal when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add('hidden');
     }
   });
 }
