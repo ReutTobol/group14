@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="product-page">
     <div id="header-component"></div>
 
@@ -61,7 +63,7 @@
         import { getProductDetails, updateProductPage } from '../js/product-gallery.js';
         import { CartService } from '../js/cart-service.js';
         import { loadHeader } from '../js/components.js';
-        
+
         window.cartService = CartService;
         let currentProduct = null;
 
@@ -86,7 +88,7 @@
             }
         });
 
-        window.incrementQuantity = function() {
+        window.incrementQuantity = function () {
             const input = document.getElementById('quantity');
             const currentValue = parseInt(input.value);
             if (currentValue < 99) {
@@ -94,7 +96,7 @@
             }
         };
 
-        window.decrementQuantity = function() {
+        window.decrementQuantity = function () {
             const input = document.getElementById('quantity');
             const currentValue = parseInt(input.value);
             if (currentValue > 1) {
@@ -102,7 +104,7 @@
             }
         };
 
-        window.validateQuantity = function(input) {
+        window.validateQuantity = function (input) {
             let value = parseInt(input.value);
             if (isNaN(value) || value < 1) {
                 input.value = 1;
@@ -111,27 +113,25 @@
             }
         };
 
-        window.addToCart = function() {
-        if (window.currentProduct) {
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const currentProduct = window.currentProduct;
-            let productSku = `${currentProduct.id}`
-            if (currentProduct.selectedColor && currentProduct.selectedStorage)
-                productSku += `${currentProduct.id}-${currentProduct.selectedColor.sku}-${currentProduct.selectedStorage}`
-            window.cartService.addToCart({
-                ...window.currentProduct,
-                quantity: quantity,
-                totalPrice: currentProduct.totalPrice,
-                sku:productSku,
-                category: new URLSearchParams(window.location.search).get('category')
-            });
-
-                // Visual feedback
+        window.addToCart = function () {
+            if (window.currentProduct) {
+                const quantity = parseInt(document.getElementById('quantity').value);
+                let productSku = `${window.currentProduct.product_id}`
+                let colorSku = null;
+                if (window.currentProduct.selectedColor && window.currentProduct.selectedStorage)
+                    colorSku = window.currentProduct.colors.find(color => color.name === window.currentProduct.selectedColor).sku
+                    productSku = `${window.currentProduct.product_id}-${colorSku}-${window.currentProduct.selectedStorage}`
+                window.cartService.addToCart({
+                    ...window.currentProduct,
+                    id: window.currentProduct.product_id,
+                    quantity: quantity,
+                    sku: productSku,
+                    category: new URLSearchParams(window.location.search).get('category')
+                });
                 const button = document.querySelector('.btn-primary');
                 button.classList.add('added');
                 button.querySelector('.button-text').textContent = 'נוסף לעגלה!';
 
-                // Reset button after animation
                 setTimeout(() => {
                     button.classList.remove('added');
                     button.querySelector('.button-text').textContent = 'הוסף לעגלה';
@@ -142,4 +142,5 @@
         };
     </script>
 </body>
+
 </html>

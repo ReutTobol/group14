@@ -54,25 +54,21 @@
         cartContainer.innerHTML = cartItems
           .map(
             (item) => `
-                <div class="cart-item" data-id="${item.id}">
+                <div class="cart-item" data-sku="${item.sku}">
                     <img src="http://localhost:5000/${item.image}" alt="${item.name}" class="cart-item-image">
                     <div class="cart-item-details">
                         <h3>${item.name}</h3>
                         <p class="cart-item-price">${item.price}</p>
                     </div>
                     <div class="quantity-selector">
-                        <button onclick="decrementQuantity(${
-                          item.id
-                        })">-</button>
+                        <button onclick="decrementQuantity('${item.sku}')">-</button>
                         <input type="number"
                                value="${item.quantity}"
                                min="1"
                                max="99"
-                               onchange="updateQuantity(${item.id}, this.value)"
+                               onchange="updateQuantity('${item.sku}', this.value)"
                                class="quantity-input">
-                        <button onclick="incrementQuantity(${
-                          item.id
-                        })">+</button>
+                        <button onclick="incrementQuantity('${item.sku}')">+</button>
                     </div>
                     <div class="cart-item-actions">
     <button class="remove-item" onclick='removeFromCart(${JSON.stringify(
@@ -95,38 +91,38 @@
       }
 
       // Make functions globally available
-      window.incrementQuantity = function (productId) {
+      window.incrementQuantity = function (sku) {
         const input = document.querySelector(
-          `.cart-item[data-id="${productId}"] .quantity-input`
+          `.cart-item[data-sku="${sku}"] .quantity-input`
         );
         const currentValue = parseInt(input.value);
         if (currentValue < 99) {
           const newValue = currentValue + 1;
           input.value = newValue;
-          CartService.updateQuantity(productId, newValue);
+          CartService.updateQuantity(sku, newValue);
           updateTotal();
         }
       };
 
-      window.decrementQuantity = function (productId) {
+      window.decrementQuantity = function (sku) {
         const input = document.querySelector(
-          `.cart-item[data-id="${productId}"] .quantity-input`
+          `.cart-item[data-sku="${sku}"] .quantity-input`
         );
         const currentValue = parseInt(input.value);
         if (currentValue > 1) {
           const newValue = currentValue - 1;
           input.value = newValue;
-          CartService.updateQuantity(productId, newValue);
+          CartService.updateQuantity(sku, newValue);
           updateTotal();
         }
       };
 
-      window.updateQuantity = function (productId, value) {
+      window.updateQuantity = function (sku, value) {
         let quantity = parseInt(value);
         if (isNaN(quantity) || quantity < 1) quantity = 1;
         if (quantity > 99) quantity = 99;
 
-        CartService.updateQuantity(productId, quantity);
+        CartService.updateQuantity(sku, quantity);
         renderCart(); // Re-render to ensure consistent state
       };
 

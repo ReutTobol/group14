@@ -27,7 +27,6 @@ export const CartService = {
         try {
             const cart = this.getCart();
             const quantity = product.quantity || 1;
-
             // Check if product is already in cart
             const existingItem = cart.find(item => item.sku === product.sku);
 
@@ -38,7 +37,7 @@ export const CartService = {
                     id: product.id,
                     category: product.category,
                     name: product.name,
-                    price: product.currentPrice || product.currentbasePrice,
+                    price: product.currentPrice || product.basePrice,
                     image: product.image,
                     sku: product.sku,
                     quantity: quantity
@@ -55,17 +54,15 @@ export const CartService = {
 
     removeFromCart(product) {
         const cart = this.getCart();
-        const updatedCart = cart.filter(item => {
-            return item.sku !== product.sku
-        });
+        const updatedCart = cart.filter(item => item.sku !== product.sku);
         this.saveCart(updatedCart);
     },
 
-    updateQuantity(productId, quantity) {
+    updateQuantity(productSku, quantity) {
         if (quantity < 1) return;
 
         const cart = this.getCart();
-        const item = cart.find(item => item.id === productId);
+        const item = cart.find(item => item.sku === productSku);
         if (item) {
             item.quantity = quantity;
             this.saveCart(cart);

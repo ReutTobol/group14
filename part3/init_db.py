@@ -1,13 +1,27 @@
+import os
+import sys
+from pathlib import Path
+
+# Add the project root to Python path
+project_root = str(Path(__file__).parent.parent)
+sys.path.append(project_root)
+
 from part3.utilities.db_connector import get_db_connection
 from part3.product_data import productData, defaultColors, defaultStorage
-import os
 
-def init_database():
+
+def init_database(cleanup=False):
     db = get_db_connection()
-    # Clear existing collections
-    collections_to_clear = ['products', 'categories', 'contacts', 'orders', 'users']
-    for collection in collections_to_clear:
-        db[collection].delete_many({})
+    
+    # Check if collections exist and handle cleanup
+    collections_to_check = ['products', 'categories', 'contacts', 'orders', 'users']
+    for collection in collections_to_check:
+        if collection in db.list_collection_names():
+            if cleanup:
+                db[collection].delete_many({})
+            else:
+                print(f"Collection '{collection}' already exists. Skipping...")
+                return
     
     # Create uploads directory if it doesn't exist
     upload_dir = 'uploads'
@@ -20,11 +34,10 @@ def init_database():
     
     for category, category_products in productData.items():
         for product in category_products:
-            # Convert price string to number
             base_price = float(product['basePrice'].replace(',', ''))
-            
-            # Create product document
+        
             product_doc = {
+                'product_id': product['id'],
                 'category': category,
                 'name': product['name'],
                 'description': product['description'],
@@ -45,6 +58,7 @@ def init_database():
     products_collection.create_index([("category", 1)])
     products_collection.create_index([("name", 1)])
     products_collection.create_index([("basePrice", 1)])
+    products_collection.create_index([("product_id", 1), ("category", 1)], unique=True)
         
     # Initialize categories collection
     categories_collection = db['categories']
@@ -68,5 +82,6 @@ def init_database():
     db['contacts'].create_index([("date", -1)])
 
 if __name__ == '__main__':
-    init_database()
+    cleanup = len(sys.argv) > 1 and sys.argv[1] == '--cleanup'
+    init_database(cleanup)
     print("Database initialized successfully!") 
