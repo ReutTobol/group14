@@ -123,7 +123,8 @@ async function initializeHeaderEvents() {
   // Add mobile menu button
   const nav = document.querySelector(".nav-container");
   const menuButton = document.createElement("button");
-  menuButton.className = "menu-button";
+  menuButton.className = "mobile-menu-button";
+  menuButton.setAttribute('aria-label', 'Toggle menu');
   menuButton.innerHTML = "☰";
   nav.appendChild(menuButton);
 

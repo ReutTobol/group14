@@ -116,12 +116,13 @@
         window.addToCart = function () {
             if (window.currentProduct) {
                 const quantity = parseInt(document.getElementById('quantity').value);
-                let productSku = `${window.currentProduct.product_id}`
+                let productSku = `${window.currentProduct.category}-${window.currentProduct.product_id}`
                 let colorSku = null;
-                if (window.currentProduct.selectedColor && window.currentProduct.selectedStorage)
+                if (window.currentProduct.selectedColor !== null && window.currentProduct.selectedStorage !== null)
                     colorSku = window.currentProduct.colors.find(color => color.name === window.currentProduct.selectedColor).sku
-                    productSku = `${window.currentProduct.product_id}-${colorSku}-${window.currentProduct.selectedStorage}`
-                window.cartService.addToCart({
+                    productSku = `${window.currentProduct.category}-${window.currentProduct.product_id}-${colorSku}-${window.currentProduct.selectedStorage}`
+                console.log("productSku", productSku);
+                    window.cartService.addToCart({
                     ...window.currentProduct,
                     id: window.currentProduct.product_id,
                     quantity: quantity,

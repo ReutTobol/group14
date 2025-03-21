@@ -304,3 +304,35 @@ body {
     height: 24px;
     object-fit: contain;
 }
+
+.mobile-menu-button {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .mobile-menu-button {
+        display: block; /* Show only on mobile */
+    }
+
+    .nav-links {
+        display: none; /* Hide nav links by default on mobile */
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex; /* Show nav links when active */
+    }
+}
